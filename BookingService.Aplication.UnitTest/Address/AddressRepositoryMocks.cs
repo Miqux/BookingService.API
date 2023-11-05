@@ -59,7 +59,7 @@ namespace BookingService.Aplication.UnitTest.Address
 
             var address2 = new Domain.Entities.Address()
             {
-                Id = 1,
+                Id = 2,
                 CreatedBy = "Admin",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
                 LastModifiedBy = string.Empty,
@@ -74,7 +74,7 @@ namespace BookingService.Aplication.UnitTest.Address
 
             var address3 = new Domain.Entities.Address()
             {
-                Id = 1,
+                Id = 3,
                 CreatedBy = "Domascz",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
                 LastModifiedBy = string.Empty,
@@ -89,7 +89,7 @@ namespace BookingService.Aplication.UnitTest.Address
 
             var address4 = new Domain.Entities.Address()
             {
-                Id = 1,
+                Id = 4,
                 CreatedBy = "Tomasz",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
                 LastModifiedBy = string.Empty,
@@ -104,7 +104,7 @@ namespace BookingService.Aplication.UnitTest.Address
 
             var address5 = new Domain.Entities.Address()
             {
-                Id = 1,
+                Id = 5,
                 CreatedBy = "Ola",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
                 LastModifiedBy = string.Empty,
