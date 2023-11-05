@@ -21,5 +21,9 @@ namespace BookingService.Persistence.Repository
             await Task.Run(() => entity = context.Address.Find(x => x.Id == id));
             return entity != null ? entity : new Address();
         }
+        public async override Task<IReadOnlyList<Address>> GetAllAsync()
+        {
+            return context.Address;
+        }
     }
 }

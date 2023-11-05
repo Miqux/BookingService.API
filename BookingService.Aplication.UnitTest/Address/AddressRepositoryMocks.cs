@@ -6,9 +6,9 @@ namespace BookingService.Aplication.UnitTest.Address
 {
     public class AddressRepositoryMocks
     {
-        public static Mock<IAddressRepository> GetCategoryRepository()
+        public static Mock<IAddressRepository> GetAddressRepository(bool empty = false)
         {
-            var categories = GetAddreses();
+            var categories = empty ? new List<Domain.Entities.Address>() : GetAddreses();
 
             var mockAddressRepository = new Mock<IAddressRepository>();
             mockAddressRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(categories);

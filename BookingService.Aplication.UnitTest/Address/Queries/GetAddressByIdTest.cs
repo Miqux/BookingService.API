@@ -15,7 +15,7 @@ namespace BookingService.Aplication.UnitTest.Address.Queries
 
         public GetAddressByIdTest()
         {
-            addressRepository = AddressRepositoryMocks.GetCategoryRepository();
+            addressRepository = AddressRepositoryMocks.GetAddressRepository();
             mapper = new MapperConfiguration(x =>
             {
                 x.AddProfile<MappingConfiguration>();
@@ -30,6 +30,15 @@ namespace BookingService.Aplication.UnitTest.Address.Queries
 
             response.ShouldNotBeNull();
             response.Id.ShouldBeGreaterThanOrEqualTo(0);
+        }
+        [Fact]
+        public async Task Handle_AddressNotExists_ReturnNull()
+        {
+            var handler = new GetAddressHandler(addressRepository.Object, mapper);
+            var response = await handler.Handle(new GetAddressQuery() { Id = -2 }
+            , CancellationToken.None);
+
+            response.ShouldBeNull();
         }
     }
 }

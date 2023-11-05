@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BookingService.Application.UseCase.Address.Commands.CreateAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAddress;
+using BookingService.Application.UseCase.Address.Queries.GetAllAddress;
 using BookingService.Domain.Entities;
 
 namespace BookingService.Application.Mapper
@@ -9,9 +10,9 @@ namespace BookingService.Application.Mapper
     {
         public MappingConfiguration()
         {
-            //CreateMap<Address, CreatedAddressCommand>();
             CreateMap<Address, CreatedAddressCommand>().ReverseMap();
             CreateMap<AddressViewModel, Address>().ReverseMap();
+            CreateMap<Address, AddressInListViewModel>().ReverseMap();
         }
     }
 }

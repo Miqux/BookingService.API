@@ -34,7 +34,7 @@ namespace BookingService.Persistence
 
             var address2 = new Domain.Entities.Address()
             {
-                Id = 1,
+                Id = 2,
                 CreatedBy = "Admin",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(startDate, DateTime.Now),
                 LastModifiedBy = string.Empty,
@@ -49,7 +49,7 @@ namespace BookingService.Persistence
 
             var address3 = new Domain.Entities.Address()
             {
-                Id = 1,
+                Id = 3,
                 CreatedBy = "Domascz",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(startDate, DateTime.Now),
                 LastModifiedBy = string.Empty,
@@ -64,7 +64,7 @@ namespace BookingService.Persistence
 
             var address4 = new Domain.Entities.Address()
             {
-                Id = 1,
+                Id = 4,
                 CreatedBy = "Tomasz",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(startDate, DateTime.Now),
                 LastModifiedBy = string.Empty,
@@ -79,7 +79,7 @@ namespace BookingService.Persistence
 
             var address5 = new Domain.Entities.Address()
             {
-                Id = 1,
+                Id = 5,
                 CreatedBy = "Ola",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(startDate, DateTime.Now),
                 LastModifiedBy = string.Empty,

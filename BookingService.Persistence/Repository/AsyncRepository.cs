@@ -19,7 +19,7 @@ namespace BookingService.Persistence.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+        public async virtual Task<IReadOnlyList<T>> GetAllAsync()
         {
             throw new NotImplementedException();
         }

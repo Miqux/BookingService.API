@@ -15,7 +15,7 @@ namespace BookingService.Aplication.UnitTest.Address.Commands
 
         public CreateAddressTest()
         {
-            addressRepository = AddressRepositoryMocks.GetCategoryRepository();
+            addressRepository = AddressRepositoryMocks.GetAddressRepository();
             mapper = new MapperConfiguration(x =>
             {
                 x.AddProfile<MappingConfiguration>();
