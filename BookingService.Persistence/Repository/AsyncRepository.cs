@@ -1,37 +1,43 @@
 ﻿using BookingService.Application.Contracts.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookingService.Persistence.Repository
 {
     public class AsyncRepository<T> : IAsyncRepository<T> where T : class
     {
-        private StaticContext context;
-        public AsyncRepository()
+        private readonly BookingServiceContext bookingServiceContext;
+
+        public AsyncRepository(BookingServiceContext bookingServiceContext)
         {
-            context = new StaticContext();
+            this.bookingServiceContext = bookingServiceContext;
         }
-        public async virtual Task<T> AddAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await bookingServiceContext.Set<T>().AddAsync(entity);
+            await bookingServiceContext.SaveChangesAsync();
+            return entity;
         }
 
         public async Task DeleteAsync(T entity)
         {
-            throw new NotImplementedException();
+            bookingServiceContext.Set<T>().Remove(entity);
+            await bookingServiceContext.SaveChangesAsync();
         }
 
-        public async virtual Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await bookingServiceContext.Set<T>().ToListAsync();
         }
 
-        public async virtual Task<T> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await bookingServiceContext.Set<T>().FindAsync(id);
         }
 
         public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            bookingServiceContext.Entry(entity).State = EntityState.Modified;
+            await bookingServiceContext.SaveChangesAsync();
         }
     }
 }

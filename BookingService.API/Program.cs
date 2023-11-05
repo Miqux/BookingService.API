@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddBookingServiceApplication();
-builder.Services.AddBookingServicePersistence();
+builder.Services.AddBookingServicePersistence(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
