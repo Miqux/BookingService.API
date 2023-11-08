@@ -1,11 +1,11 @@
 ﻿using BookingService.Application.Contracts.Persistance;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookingService.Persistence.Repository
+namespace BookingService.Infrastructure.Persistence.Repository
 {
     public class AsyncRepository<T> : IAsyncRepository<T> where T : class
     {
-        private readonly BookingServiceContext bookingServiceContext;
+        public readonly BookingServiceContext bookingServiceContext;
 
         public AsyncRepository(BookingServiceContext bookingServiceContext)
         {

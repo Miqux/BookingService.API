@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BookingService.Persistence.Migrations
+namespace BookingService.Infrastructure.Persistence.Migrations
 {
     public partial class init2 : Migration
     {

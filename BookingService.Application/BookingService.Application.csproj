@@ -22,4 +22,9 @@
     <ProjectReference Include="..\BookingService.Domain\BookingService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCase\User\Commands\CreateUser\" />
+    <Folder Include="UseCase\User\Queries\" />
+  </ItemGroup>
+
 </Project>

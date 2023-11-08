@@ -2,6 +2,7 @@
 using BookingService.Application.UseCase.Address.Queries.GetAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAllAddress;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
@@ -28,6 +29,7 @@ namespace BookingService.API.Controllers
             var response = await mediator.Send(new GetAddressQuery() { Id = id });
             return Ok(response);
         }
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<AddressInListViewModel>>> GetAll()
         {

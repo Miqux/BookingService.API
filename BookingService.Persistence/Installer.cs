@@ -1,12 +1,12 @@
 ﻿using BookingService.Application.Contracts.Persistance;
-using BookingService.Persistence.Repository;
+using BookingService.Infrastructure.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 #nullable disable
 
-namespace BookingService.Persistence
+namespace BookingService.Infrastructure.Persistence
 {
     public static class Installer
     {
@@ -19,6 +19,7 @@ namespace BookingService.Persistence
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AsyncRepository<>));
 
             services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

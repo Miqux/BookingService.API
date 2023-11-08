@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace BookingService.Persistence
+namespace BookingService.Infrastructure.Persistence
 {
     public class BookingServiceContext : DbContext
     {
