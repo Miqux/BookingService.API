@@ -7,6 +7,6 @@ namespace BookingService.Domain.Entities
         public int Name { get; set; }
         public Address? Address { get; set; }
         public User? CompanyBoss { get; set; }
-        public IEnumerable<CompanyEmployee>? Employees { get; set; }
+        public IEnumerable<Employee>? Employees { get; set; }
     }
 }

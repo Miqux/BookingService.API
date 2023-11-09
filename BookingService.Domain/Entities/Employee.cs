@@ -2,7 +2,7 @@
 
 namespace BookingService.Domain.Entities
 {
-    public class CompanyEmployee : BaseAuditableEntity
+    public class Employee : BaseAuditableEntity
     {
         public string Name { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;

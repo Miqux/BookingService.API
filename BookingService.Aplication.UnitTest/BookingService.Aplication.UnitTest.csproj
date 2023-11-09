@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Company\" />
+    <Folder Include="Employee\" />
+    <Folder Include="Serivce\Queries\" />
     <Folder Include="User\Queries\" />
   </ItemGroup>
 

@@ -8,6 +8,6 @@ namespace BookingService.Domain.Entities
         public decimal Cost { get; set; }
         public int DurationInMinutes { get; set; }
         public Company? Company { get; set; }
-        public CompanyEmployee? Employee { get; set; }
+        public Employee? Employee { get; set; }
     }
 }
