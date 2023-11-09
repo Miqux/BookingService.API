@@ -19,7 +19,7 @@ namespace BookingService.Application.UseCase.User.Commands.Login
         }
         public async Task<LoginCommandResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetUserByNickAsync(request.Login);
+            var user = await userRepository.GetUserByLoginAsync(request.Login);
 
             if (user == null) return new LoginCommandResponse("User not found", false);
 

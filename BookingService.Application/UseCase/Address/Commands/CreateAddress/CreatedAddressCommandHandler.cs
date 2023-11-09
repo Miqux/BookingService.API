@@ -16,7 +16,7 @@ namespace BookingService.Application.UseCase.Address.Commands.CreateAddress
         }
         public async Task<CreatedAddressCommandResponse> Handle(CreatedAddressCommand request, CancellationToken cancellationToken)
         {
-            var validator = await new CreatedAddressCommandValidator().ValidateAsync(request);
+            var validator = await new CreatedAddressCommandValidator().ValidateAsync(request, cancellationToken);
 
             if (!validator.IsValid)
                 return new CreatedAddressCommandResponse(validator);

@@ -13,14 +13,12 @@ namespace BookingService.Aplication.UnitTest.Address
             var mockAddressRepository = new Mock<IAddressRepository>();
             mockAddressRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(categories);
 
-#pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
             mockAddressRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(
             (int id) =>
             {
                 var cat = categories.FirstOrDefault(c => c.Id == id);
                 return cat;
             });
-#pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
 
             mockAddressRepository.Setup(repo => repo.AddAsync(It.IsAny<Domain.Entities.Address>())).ReturnsAsync(
                 (Domain.Entities.Address category) =>

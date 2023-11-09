@@ -66,5 +66,28 @@ namespace BookingService.Aplication.UnitTest.Address.Commands
             allAddress.Count.ShouldBe(allAddressBeforeCount);
             response.AddressId.ShouldBeNull();
         }
+
+        [Fact]
+        public async Task Handle_HouseNumberLessThanOne_DontAddedToAddressRepo()
+        {
+            var handler = new CreatedAddressCommandHandler(addressRepository.Object, mapper);
+            var allAddressBeforeCount = (await addressRepository.Object.GetAllAsync()).Count;
+
+            var response = await handler.Handle(new CreatedAddressCommand()
+            {
+                City = "Waasda",
+                Street = "Tasdasd",
+                Zipcode = "21-213",
+                HouseNumber = 0,
+                ApartmentNumber = 2
+            }
+            , CancellationToken.None);
+
+            var allAddress = await addressRepository.Object.GetAllAsync();
+            response.Success.ShouldBe(false);
+            response.ValidationErrors.Count.ShouldBe(1);
+            allAddress.Count.ShouldBe(allAddressBeforeCount);
+            response.AddressId.ShouldBeNull();
+        }
     }
 }

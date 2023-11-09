@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCase\User\Commands\CreateUser\" />
     <Folder Include="UseCase\User\Queries\" />
   </ItemGroup>
 
