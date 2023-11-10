@@ -74,20 +74,23 @@ namespace BookingService.Aplication.UnitTest.Serivce
                     Login = "test1",
                     Password = "password1",
                     Email = "Email1@gmail.com"
-                },
-                Employees = new List<Domain.Entities.Employee>()
+                }
             };
-            comapny1.Employees.ToList().Add(new Domain.Entities.Employee()
+            var temp = new List<Domain.Entities.Employee>
             {
-                Id = 1,
-                CreatedBy = "Mark",
-                CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
-                LastModifiedBy = string.Empty,
-                LastModifiedDate = null,
-                Name = "Pracownik1",
-                LastName = "NazwikoPracownik1"
-            });
+                new Domain.Entities.Employee()
+                {
+                    Id = 1,
+                    CreatedBy = "Mark",
+                    CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
+                    LastModifiedBy = string.Empty,
+                    LastModifiedDate = null,
+                    Name = "Pracownik1",
+                    LastName = "NazwikoPracownik1"
+                }
+            };
 
+            comapny1.Employees = temp;
             var comapny2 = new Domain.Entities.Company()
             {
                 Id = 2,

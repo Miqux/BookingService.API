@@ -34,10 +34,14 @@ namespace BookingService.Application.UseCase.Service.Commands
             if (employeeRepository.GetByIdAsync(request.EmployeeId) == null)
                 return new CreatedServiceCommandResponse("Employee doasn't exist", false);
 
-            if (company.Employees?.Any(x => x.Id == request.EmployeeId) == false)
+            var employee = company.Employees?.FirstOrDefault(x => x.Id == request.EmployeeId);
+
+            if (employee == null)
                 return new CreatedServiceCommandResponse("Wrong employee", false);
 
             var service = mapper.Map<Domain.Entities.Service>(request);
+            service.Company = company;
+            service.Employee = employee;
 
             service = await serviceRepository.AddAsync(service);
 

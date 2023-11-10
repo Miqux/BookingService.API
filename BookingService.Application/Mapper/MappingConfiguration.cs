@@ -2,6 +2,7 @@
 using BookingService.Application.UseCase.Address.Commands.CreateAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAllAddress;
+using BookingService.Application.UseCase.Service.Commands;
 using BookingService.Application.UseCase.User.Commands.CreateUser;
 using BookingService.Domain.Entities;
 
@@ -15,6 +16,9 @@ namespace BookingService.Application.Mapper
             CreateMap<User, RegisteryCommand>().ReverseMap();
             CreateMap<AddressViewModel, Address>().ReverseMap();
             CreateMap<Address, AddressInListViewModel>().ReverseMap();
+
+            CreateMap<CreatedServiceCommand, Service>();
+
         }
     }
 }
