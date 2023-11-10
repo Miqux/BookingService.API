@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BookingService.Aplication.UnitTest.Company;
+using BookingService.Aplication.UnitTest.Employee;
 using BookingService.Application.Contracts.Persistance;
 using BookingService.Application.Mapper;
 using Moq;
@@ -17,6 +19,9 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
             {
                 x.AddProfile<MappingConfiguration>();
             }).CreateMapper();
+            serviceRepository = ServiceRepositoryMock.GetServiceRepository();
+            companyRepository = CompanyRepositoryMock.GetCompanyRepository();
+            employeeRepository = EmployeeRepositoryMock.GetEmployeeRepository();
         }
     }
 }

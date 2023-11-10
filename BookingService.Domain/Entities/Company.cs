@@ -4,7 +4,7 @@ namespace BookingService.Domain.Entities
 {
     public class Company : BaseAuditableEntity
     {
-        public int Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public Address? Address { get; set; }
         public User? CompanyBoss { get; set; }
         public IEnumerable<Employee>? Employees { get; set; }
