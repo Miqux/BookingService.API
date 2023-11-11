@@ -63,7 +63,7 @@ namespace BookingService.Aplication.UnitTest.User
                 LastModifiedDate = null,
                 Name = "Warszawa",
                 LastName = "Marszałkowska",
-                Role = Domain.Entities.Enums.UserRole.User,
+                Role = Domain.Entities.Enums.UserRole.CompanyBoss,
                 Login = "test1",
                 Password = "password1",
                 Email = "Email1@gmail.com"
@@ -79,7 +79,7 @@ namespace BookingService.Aplication.UnitTest.User
                 LastModifiedDate = null,
                 Name = "Warszawa2",
                 LastName = "Marszałkowska2",
-                Role = Domain.Entities.Enums.UserRole.User,
+                Role = Domain.Entities.Enums.UserRole.CompanyBoss,
                 Login = "test2",
                 Password = "password2",
                 Email = "Email2@gmail.com"
@@ -104,7 +104,7 @@ namespace BookingService.Aplication.UnitTest.User
 
             var address4 = new Domain.Entities.User()
             {
-                Id = 1,
+                Id = 4,
                 CreatedBy = "Mark4",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
                 LastModifiedBy = string.Empty,
@@ -120,7 +120,7 @@ namespace BookingService.Aplication.UnitTest.User
 
             var address5 = new Domain.Entities.User()
             {
-                Id = 1,
+                Id = 5,
                 CreatedBy = "Mark5",
                 CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
                 LastModifiedBy = string.Empty,

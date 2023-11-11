@@ -70,7 +70,7 @@ namespace BookingService.Aplication.UnitTest.Company
                     LastModifiedDate = null,
                     Name = "Warszawa",
                     LastName = "Marszałkowska",
-                    Role = Domain.Entities.Enums.UserRole.User,
+                    Role = Domain.Entities.Enums.UserRole.CompanyBoss,
                     Login = "test1",
                     Password = "password1",
                     Email = "Email1@gmail.com"
@@ -123,23 +123,27 @@ namespace BookingService.Aplication.UnitTest.Company
                     LastModifiedDate = null,
                     Name = "Warszawa2",
                     LastName = "Marszałkowska2",
-                    Role = Domain.Entities.Enums.UserRole.User,
+                    Role = Domain.Entities.Enums.UserRole.CompanyBoss,
                     Login = "test2",
                     Password = "password2",
                     Email = "Email2@gmail.com"
                 },
                 Employees = new List<Domain.Entities.Employee>()
             };
-            comapny2.Employees.ToList().Add(new Domain.Entities.Employee()
+            var temp2 = new List<Domain.Entities.Employee>()
             {
-                Id = 2,
-                CreatedBy = "Mark",
-                CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
-                LastModifiedBy = string.Empty,
-                LastModifiedDate = null,
-                Name = "Pracownik2",
-                LastName = "NazwikoPracownik2"
-            });
+                new Domain.Entities.Employee()
+                {
+                    Id = 2,
+                    CreatedBy = "Mark",
+                    CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
+                    LastModifiedBy = string.Empty,
+                    LastModifiedDate = null,
+                    Name = "Pracownik2",
+                    LastName = "NazwikoPracownik2"
+                }
+            };
+            comapny2.Employees = temp2;
             list.Add(comapny2);
 
             var comapny3 = new Domain.Entities.Company()
@@ -179,26 +183,30 @@ namespace BookingService.Aplication.UnitTest.Company
                 },
                 Employees = new List<Domain.Entities.Employee>()
             };
-            comapny3.Employees.ToList().Add(new Domain.Entities.Employee()
+            var temp3 = new List<Domain.Entities.Employee>()
             {
-                Id = 3,
-                CreatedBy = "Mark",
-                CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
-                LastModifiedBy = string.Empty,
-                LastModifiedDate = null,
-                Name = "Pracownik3",
-                LastName = "NazwikoPracownik3"
-            });
-            comapny3.Employees.ToList().Add(new Domain.Entities.Employee()
-            {
-                Id = 4,
-                CreatedBy = "Mark4",
-                CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
-                LastModifiedBy = string.Empty,
-                LastModifiedDate = null,
-                Name = "Pracownik4",
-                LastName = "NazwikoPracownik4"
-            });
+                new Domain.Entities.Employee()
+                {
+                    Id = 3,
+                    CreatedBy = "Mark",
+                    CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
+                    LastModifiedBy = string.Empty,
+                    LastModifiedDate = null,
+                    Name = "Pracownik3",
+                    LastName = "NazwikoPracownik3"
+                },
+                new Domain.Entities.Employee()
+                {
+                    Id = 4,
+                    CreatedBy = "Mark4",
+                    CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
+                    LastModifiedBy = string.Empty,
+                    LastModifiedDate = null,
+                    Name = "Pracownik4",
+                    LastName = "NazwikoPracownik4"
+                }
+            };
+            comapny3.Employees = temp3;
             list.Add(comapny3);
 
             return list;
