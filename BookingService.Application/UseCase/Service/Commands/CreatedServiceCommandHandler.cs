@@ -37,7 +37,7 @@ namespace BookingService.Application.UseCase.Service.Commands
             var employee = company.Employees?.FirstOrDefault(x => x.Id == request.EmployeeId);
 
             if (employee == null)
-                return new CreatedServiceCommandResponse("Wrong employee", false);
+                return new CreatedServiceCommandResponse("The given employee is not an employee of the company", false);
 
             var service = mapper.Map<Domain.Entities.Service>(request);
             service.Company = company;
