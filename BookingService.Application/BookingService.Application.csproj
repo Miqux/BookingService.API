@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="UseCase\Service\Queries\GetService\" />
     <Folder Include="UseCase\User\Queries\" />
   </ItemGroup>
 
