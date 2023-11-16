@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using BookingService.Application.Contracts.Persistance;
+using BookingService.Application.Contracts.Security;
+using FluentValidation.Results;
 using MediatR;
 
 namespace BookingService.Application.UseCase.User.Commands.CreateUser
@@ -8,11 +10,13 @@ namespace BookingService.Application.UseCase.User.Commands.CreateUser
     {
         private readonly IMapper mapper;
         private readonly IUserRepository userRepository;
+        private readonly IPasswordHashService passwordHashService;
 
-        public RegisteryCommandHandler(IMapper mapper, IUserRepository userRepository)
+        public RegisteryCommandHandler(IMapper mapper, IUserRepository userRepository, IPasswordHashService passwordHashService)
         {
             this.mapper = mapper;
             this.userRepository = userRepository;
+            this.passwordHashService = passwordHashService;
         }
         public async Task<RegisteryCommandResponse> Handle(RegisteryCommand request, CancellationToken cancellationToken)
         {
@@ -22,13 +26,20 @@ namespace BookingService.Application.UseCase.User.Commands.CreateUser
                 return new RegisteryCommandResponse(validator);
 
             if (userRepository.GetUserByLoginAsync(request.Login).Result != null)
-                return new RegisteryCommandResponse("User with this login alredy exist", false);
-
+            {
+                ValidationResult validation = new(new List<ValidationFailure>());
+                validation.Errors.Add(new ValidationFailure("Login", "User with this login alredy exist"));
+                return new RegisteryCommandResponse(validation);
+            }
             if (userRepository.GetUserByEmailAsync(request.Email).Result != null)
-                return new RegisteryCommandResponse("User with this email alredy exist", false);
+            {
+                ValidationResult validation = new(new List<ValidationFailure>());
+                validation.Errors.Add(new ValidationFailure("Email", "User with this email alredy exist"));
+                return new RegisteryCommandResponse(validation);
+            }
 
+            request.Password = passwordHashService.Encrypt(request.Password);
             var user = mapper.Map<Domain.Entities.User>(request);
-
             user = await userRepository.AddAsync(user);
 
             return new RegisteryCommandResponse(user.Id);

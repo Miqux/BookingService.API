@@ -109,7 +109,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
             int userCountAfterCommand = userRepository.Object.GetAllAsync().Result.Count;
 
             response.Success.ShouldBe(false);
-            response.ValidationErrors.Count.ShouldBe(0);
+            response.ValidationErrors.Count.ShouldBe(1);
             response.UserId.ShouldBeNull();
             userCountAfterCommand.ShouldBe(userCount);
         }
@@ -132,7 +132,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
             int userCountAfterCommand = userRepository.Object.GetAllAsync().Result.Count;
 
             response.Success.ShouldBe(false);
-            response.ValidationErrors.Count.ShouldBe(0);
+            response.ValidationErrors.Count.ShouldBe(1);
             response.UserId.ShouldBeNull();
             userCountAfterCommand.ShouldBe(userCount);
         }
@@ -155,7 +155,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
             int userCountAfterCommand = userRepository.Object.GetAllAsync().Result.Count;
 
             response.Success.ShouldBe(false);
-            response.ValidationErrors.Count.ShouldBe(0);
+            response.ValidationErrors.Count.ShouldBe(1);
             response.UserId.ShouldBeNull();
             userCountAfterCommand.ShouldBe(userCount);
         }
