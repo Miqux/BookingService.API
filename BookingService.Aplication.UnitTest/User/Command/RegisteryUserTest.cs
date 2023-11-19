@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BookingService.Application.Contracts.Persistance;
+using BookingService.Application.Contracts.Security;
 using BookingService.Application.Mapper;
 using BookingService.Application.UseCase.User.Commands.CreateUser;
 using Moq;
@@ -11,6 +12,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
     public class RegisteryUserTest
     {
         private readonly Mock<IUserRepository> userRepository;
+        private readonly Mock<IPasswordHashService> passwordHashService;
         private readonly IMapper mapper;
         public RegisteryUserTest()
         {
@@ -19,12 +21,18 @@ namespace BookingService.Aplication.UnitTest.User.Command
             {
                 x.AddProfile<MappingConfiguration>();
             }).CreateMapper();
+            passwordHashService = new Mock<IPasswordHashService>();
+            passwordHashService.Setup(service => service.Encrypt(It.IsAny<string>()))
+                .Returns((string password) =>
+                {
+                    return password;
+                });
         }
 
         [Fact]
         public async Task Handle_ValidUser_AddedToUserRepo()
         {
-            var handler = new RegisteryCommandHandler(mapper, userRepository.Object);
+            var handler = new RegisteryCommandHandler(mapper, userRepository.Object, passwordHashService.Object);
             int userCount = userRepository.Object.GetAllAsync().Result.Count;
 
             var response = await handler.Handle(new RegisteryCommand()
@@ -47,7 +55,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
         [Fact]
         public async Task Handle_DontValidUser_DontAddedToUserRepo()
         {
-            var handler = new RegisteryCommandHandler(mapper, userRepository.Object);
+            var handler = new RegisteryCommandHandler(mapper, userRepository.Object, passwordHashService.Object);
             int userCount = userRepository.Object.GetAllAsync().Result.Count;
 
             var response = await handler.Handle(new RegisteryCommand()
@@ -70,7 +78,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
         [Fact]
         public async Task Handle_DontValidUserEmail_DontAddedToUserRepo()
         {
-            var handler = new RegisteryCommandHandler(mapper, userRepository.Object);
+            var handler = new RegisteryCommandHandler(mapper, userRepository.Object, passwordHashService.Object);
             int userCount = userRepository.Object.GetAllAsync().Result.Count;
 
             var response = await handler.Handle(new RegisteryCommand()
@@ -93,7 +101,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
         [Fact]
         public async Task Handle_UserEmailAlredyExist_DontAddedToUserRepo()
         {
-            var handler = new RegisteryCommandHandler(mapper, userRepository.Object);
+            var handler = new RegisteryCommandHandler(mapper, userRepository.Object, passwordHashService.Object);
             int userCount = userRepository.Object.GetAllAsync().Result.Count;
 
             var response = await handler.Handle(new RegisteryCommand()
@@ -116,7 +124,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
         [Fact]
         public async Task Handle_UserLoginAlredyExist_DontAddedToUserRepo()
         {
-            var handler = new RegisteryCommandHandler(mapper, userRepository.Object);
+            var handler = new RegisteryCommandHandler(mapper, userRepository.Object, passwordHashService.Object);
             int userCount = userRepository.Object.GetAllAsync().Result.Count;
 
             var response = await handler.Handle(new RegisteryCommand()
@@ -139,7 +147,7 @@ namespace BookingService.Aplication.UnitTest.User.Command
         [Fact]
         public async Task Handle_UserLoginAndEmailAlredyExist_DontAddedToUserRepo()
         {
-            var handler = new RegisteryCommandHandler(mapper, userRepository.Object);
+            var handler = new RegisteryCommandHandler(mapper, userRepository.Object, passwordHashService.Object);
             int userCount = userRepository.Object.GetAllAsync().Result.Count;
 
             var response = await handler.Handle(new RegisteryCommand()

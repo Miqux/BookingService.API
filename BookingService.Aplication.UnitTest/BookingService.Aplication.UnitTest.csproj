@@ -28,8 +28,4 @@
     <ProjectReference Include="..\BookingService.Application\BookingService.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="User\Queries\" />
-  </ItemGroup>
-
 </Project>

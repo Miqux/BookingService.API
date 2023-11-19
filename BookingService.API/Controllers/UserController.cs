@@ -1,5 +1,6 @@
 ﻿using BookingService.Application.UseCase.User.Commands.CreateUser;
 using BookingService.Application.UseCase.User.Commands.Login;
+using BookingService.Application.UseCase.User.Queries.GetUser;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,17 @@ namespace BookingService.API.Controllers
             var response = await mediator.Send(registeryCommand);
             if (!response.Success && response.ValidationErrors.Count > 0)
                 return UnprocessableEntity(response);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserViewModel>> Get(int id)
+        {
+            var response = await mediator.Send(new GetUserQuery() { Id = id });
+
+            if (response == null)
+                return NotFound();
 
             return Ok(response);
         }
