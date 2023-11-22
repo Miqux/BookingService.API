@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.Application.UseCase.Service.Commands
 {
@@ -9,5 +10,6 @@ namespace BookingService.Application.UseCase.Service.Commands
         public int DurationInMinutes { get; set; }
         public int ComapnyId { get; set; }
         public int EmployeeId { get; set; }
+        public ServiceType ServiceType { get; set; }
     }
 }

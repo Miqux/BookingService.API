@@ -41,7 +41,8 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 Cost = 86.4M,
                 DurationInMinutes = 90,
                 ComapnyId = 1,
-                EmployeeId = 1
+                EmployeeId = 1,
+                ServiceType = Domain.Entities.Enums.ServiceType.Combo
             }, CancellationToken.None);
 
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
@@ -65,7 +66,8 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 Cost = 86.4M,
                 DurationInMinutes = 90,
                 ComapnyId = 1,
-                EmployeeId = 1
+                EmployeeId = 1,
+                ServiceType = Domain.Entities.Enums.ServiceType.Combo
             }, CancellationToken.None);
 
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
@@ -89,7 +91,8 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 Cost = -12,
                 DurationInMinutes = 0,
                 ComapnyId = 1,
-                EmployeeId = 1
+                EmployeeId = 1,
+                ServiceType = Domain.Entities.Enums.ServiceType.Haircut
             }, CancellationToken.None);
 
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
@@ -113,7 +116,8 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 Cost = -12,
                 DurationInMinutes = 0,
                 ComapnyId = 1,
-                EmployeeId = 1
+                EmployeeId = 1,
+                ServiceType = Domain.Entities.Enums.ServiceType.BeardTrimming
             }, CancellationToken.None);
 
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
@@ -137,7 +141,8 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 Cost = 12,
                 DurationInMinutes = 12,
                 ComapnyId = 13,
-                EmployeeId = 1
+                EmployeeId = 1,
+                ServiceType = Domain.Entities.Enums.ServiceType.Combo
             }, CancellationToken.None);
 
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
@@ -161,7 +166,8 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 Cost = 12,
                 DurationInMinutes = 12,
                 ComapnyId = 1,
-                EmployeeId = 13
+                EmployeeId = 13,
+                ServiceType = Domain.Entities.Enums.ServiceType.Haircut
             }, CancellationToken.None);
 
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
@@ -185,7 +191,8 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 Cost = 12,
                 DurationInMinutes = 12,
                 ComapnyId = 1,
-                EmployeeId = 3
+                EmployeeId = 3,
+                ServiceType = Domain.Entities.Enums.ServiceType.Haircut
             }, CancellationToken.None);
 
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;

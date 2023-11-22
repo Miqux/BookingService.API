@@ -152,6 +152,7 @@ namespace BookingService.Aplication.UnitTest.Serivce
                 LastModifiedBy = string.Empty,
                 LastModifiedDate = null,
                 Name = "Usługa 1",
+                ServiceType = Domain.Entities.Enums.ServiceType.Haircut,
                 Cost = 100,
                 DurationInMinutes = 60,
                 Company = comapny1,
@@ -178,6 +179,7 @@ namespace BookingService.Aplication.UnitTest.Serivce
                 Name = "Usługa 2",
                 Cost = 150.20M,
                 DurationInMinutes = 45,
+                ServiceType = Domain.Entities.Enums.ServiceType.Combo,
                 Company = comapny2,
                 Employee = new Domain.Entities.Employee()
                 {

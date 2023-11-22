@@ -22,7 +22,7 @@ namespace BookingService.API.Controllers
             var response = await mediator.Send(loginCommand);
             return Ok(response);
         }
-        [HttpPost("Registery")]
+        [HttpPost]
         public async Task<ActionResult<LoginCommandResponse>> Registery([FromBody] RegisteryCommand registeryCommand)
         {
             var response = await mediator.Send(registeryCommand);
