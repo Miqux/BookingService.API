@@ -1,12 +1,11 @@
 ﻿using BookingService.Application.Contracts.Security;
-using BookingService.Infrastructure.Security;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BookingService.Infrastructure
+namespace BookingService.Infrastructure.Security
 {
     public static class Installer
     {
-        public static IServiceCollection AddBookingServicePersistence(this IServiceCollection services)
+        public static IServiceCollection AddBookingServiceSecurity(this IServiceCollection services)
         {
             services.AddScoped<IPasswordHashService, PasswordHashService>();
             services.AddScoped<IJwtProvider, JwtProvider>();

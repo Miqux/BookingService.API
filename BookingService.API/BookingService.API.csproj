@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="configaccount.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="configaccount.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="MediatR" Version="11.1.0" />
@@ -24,7 +34,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookingService.Application\BookingService.Application.csproj" />
-    <ProjectReference Include="..\BookingService.Infrastructure\BookingService.Infrastructure.csproj" />
+    <ProjectReference Include="..\BookingService.Infrastructure.GoogleCalendar\BookingService.Infrastructure.GoogleCalendar.csproj" />
+    <ProjectReference Include="..\BookingService.Infrastructure\BookingService.Infrastructure.Security.csproj" />
     <ProjectReference Include="..\BookingService.Persistence\BookingService.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 

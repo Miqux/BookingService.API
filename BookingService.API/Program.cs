@@ -1,7 +1,8 @@
 using BookingService.API.Setup;
 using BookingService.Application;
-using BookingService.Infrastructure;
+using BookingService.Infrastructure.GoogleCalendar;
 using BookingService.Infrastructure.Persistence;
+using BookingService.Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 
@@ -61,7 +62,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddBookingServiceApplication();
 builder.Services.AddBookingServicePersistence(builder.Configuration);
-builder.Services.AddBookingServicePersistence();
+builder.Services.AddBookingServiceSecurity();
+builder.Services.AddBookingServiceGoogleCalendar();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
     AddJwtBearer();
