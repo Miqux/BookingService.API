@@ -9,15 +9,12 @@ namespace BookingService.Application.UseCase.Service.Commands
         private readonly IMapper mapper;
         private readonly IServiceRepository serviceRepository;
         private readonly ICompanyRepository companyRepository;
-        private readonly IEmployeeRepository employeeRepository;
 
-        public CreatedServiceCommandHandler(IMapper mapper, IServiceRepository serviceRepository, ICompanyRepository companyRepository,
-            IEmployeeRepository employeeRepository)
+        public CreatedServiceCommandHandler(IMapper mapper, IServiceRepository serviceRepository, ICompanyRepository companyRepository)
         {
             this.mapper = mapper;
             this.serviceRepository = serviceRepository;
             this.companyRepository = companyRepository;
-            this.employeeRepository = employeeRepository;
         }
         public async Task<CreatedServiceCommandResponse> Handle(CreatedServiceCommand request, CancellationToken cancellationToken)
         {
@@ -31,17 +28,8 @@ namespace BookingService.Application.UseCase.Service.Commands
             if (company == null)
                 return new CreatedServiceCommandResponse("Comapny doasn't exist", false);
 
-            if (employeeRepository.GetByIdAsync(request.EmployeeId) == null)
-                return new CreatedServiceCommandResponse("Employee doasn't exist", false);
-
-            var employee = company.Employees?.FirstOrDefault(x => x.Id == request.EmployeeId);
-
-            if (employee == null)
-                return new CreatedServiceCommandResponse("The given employee is not an employee of the company", false);
-
             var service = mapper.Map<Domain.Entities.Service>(request);
             service.Company = company;
-            service.Employee = employee;
 
             service = await serviceRepository.AddAsync(service);
 

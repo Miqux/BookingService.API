@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BookingService.Aplication.UnitTest.Company;
-using BookingService.Aplication.UnitTest.Employee;
 using BookingService.Application.Contracts.Persistance;
 using BookingService.Application.Mapper;
 using BookingService.Application.UseCase.Service.Commands;
@@ -15,7 +14,6 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         private readonly IMapper mapper;
         private readonly Mock<IServiceRepository> serviceRepository;
         private readonly Mock<ICompanyRepository> companyRepository;
-        private readonly Mock<IEmployeeRepository> employeeRepository;
         public CreatedServiceTest()
         {
             mapper = new MapperConfiguration(x =>
@@ -24,14 +22,12 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
             }).CreateMapper();
             serviceRepository = ServiceRepositoryMock.GetServiceRepository();
             companyRepository = CompanyRepositoryMock.GetCompanyRepository();
-            employeeRepository = EmployeeRepositoryMock.GetEmployeeRepository();
         }
 
         [Fact]
         public async Task Handle_ValidService_AddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object
-                , employeeRepository.Object);
+            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
@@ -55,8 +51,7 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_WrongNameService_DontAddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object
-                , employeeRepository.Object);
+            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
@@ -80,8 +75,7 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_WrongNumberValueService_DontAddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object
-                , employeeRepository.Object);
+            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
@@ -105,8 +99,7 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_WrongValueService_DontAddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object
-                , employeeRepository.Object);
+            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
@@ -130,8 +123,7 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_WrongCompanyId_DontAddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object
-                , employeeRepository.Object);
+            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
@@ -143,56 +135,6 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 ComapnyId = 13,
                 EmployeeId = 1,
                 ServiceType = Domain.Entities.Enums.ServiceType.Combo
-            }, CancellationToken.None);
-
-            int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
-
-            response.Success.ShouldBe(false);
-            response.ValidationErrors.Count.ShouldBe(0);
-            response.ServiceId.ShouldBeNull();
-            userCountAfterCommand.ShouldBe(userCountBeforeCommand);
-        }
-        [Fact]
-        public async Task Handle_WrongEmployeeId_DontAddedToServiceRepo()
-        {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object
-                , employeeRepository.Object);
-
-            int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
-
-            var response = await handler.Handle(new CreatedServiceCommand()
-            {
-                Name = "sasdda",
-                Cost = 12,
-                DurationInMinutes = 12,
-                ComapnyId = 1,
-                EmployeeId = 13,
-                ServiceType = Domain.Entities.Enums.ServiceType.Haircut
-            }, CancellationToken.None);
-
-            int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
-
-            response.Success.ShouldBe(false);
-            response.ValidationErrors.Count.ShouldBe(0);
-            response.ServiceId.ShouldBeNull();
-            userCountAfterCommand.ShouldBe(userCountBeforeCommand);
-        }
-        [Fact]
-        public async Task Handle_GivenEmployeeIsNotAnEmployeeOfTheCompany_DontAddedToServiceRepo()
-        {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object
-                , employeeRepository.Object);
-
-            int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
-
-            var response = await handler.Handle(new CreatedServiceCommand()
-            {
-                Name = "sasdda",
-                Cost = 12,
-                DurationInMinutes = 12,
-                ComapnyId = 1,
-                EmployeeId = 3,
-                ServiceType = Domain.Entities.Enums.ServiceType.Haircut
             }, CancellationToken.None);
 
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;

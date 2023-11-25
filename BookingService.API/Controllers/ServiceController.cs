@@ -1,5 +1,6 @@
 ﻿using BookingService.Application.UseCase.Service.Commands;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
+using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,12 @@ namespace BookingService.API.Controllers
         public async Task<ActionResult<List<ServiceInListViewModel>>> Get()
         {
             var response = await mediator.Send(new GetServicesListQuery());
+            return Ok(response);
+        }
+        [HttpGet("GetLightModels")]
+        public async Task<ActionResult<List<ServiceLightModel>>> GetLight()
+        {
+            var response = await mediator.Send(new GetServicesLightModelQuery());
             return Ok(response);
         }
     }

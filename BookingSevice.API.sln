@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Aplication.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructure.Security", "BookingService.Infrastructure\BookingService.Infrastructure.Security.csproj", "{ED46D8B8-DABE-41A2-8983-393EE59632D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingService.Infrastructure.GoogleCalendar", "BookingService.Infrastructure.GoogleCalendar\BookingService.Infrastructure.GoogleCalendar.csproj", "{C9B5855C-0AEA-4FC1-88F1-D5DAE41375AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructure.GoogleCalendar", "BookingService.Infrastructure.GoogleCalendar\BookingService.Infrastructure.GoogleCalendar.csproj", "{C9B5855C-0AEA-4FC1-88F1-D5DAE41375AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

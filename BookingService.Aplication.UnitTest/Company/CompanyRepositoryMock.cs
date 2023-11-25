@@ -74,23 +74,8 @@ namespace BookingService.Aplication.UnitTest.Company
                     Login = "test1",
                     Password = "password1",
                     Email = "Email1@gmail.com"
-                },
-                Employees = new List<Domain.Entities.Employee>()
-            };
-            var temp = new List<Domain.Entities.Employee>()
-            {
-                new Domain.Entities.Employee()
-                {
-                    Id = 1,
-                    CreatedBy = "Mark",
-                    CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
-                    LastModifiedBy = string.Empty,
-                    LastModifiedDate = null,
-                    Name = "Pracownik1",
-                    LastName = "NazwikoPracownik1"
                 }
             };
-            comapny1.Employees = temp;
             list.Add(comapny1);
 
             var comapny2 = new Domain.Entities.Company()
@@ -127,23 +112,9 @@ namespace BookingService.Aplication.UnitTest.Company
                     Login = "test2",
                     Password = "password2",
                     Email = "Email2@gmail.com"
-                },
-                Employees = new List<Domain.Entities.Employee>()
-            };
-            var temp2 = new List<Domain.Entities.Employee>()
-            {
-                new Domain.Entities.Employee()
-                {
-                    Id = 2,
-                    CreatedBy = "Mark",
-                    CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
-                    LastModifiedBy = string.Empty,
-                    LastModifiedDate = null,
-                    Name = "Pracownik2",
-                    LastName = "NazwikoPracownik2"
                 }
             };
-            comapny2.Employees = temp2;
+
             list.Add(comapny2);
 
             var comapny3 = new Domain.Entities.Company()
@@ -181,32 +152,8 @@ namespace BookingService.Aplication.UnitTest.Company
                     Password = "password3",
                     Email = "Email3@gmail.com"
                 },
-                Employees = new List<Domain.Entities.Employee>()
             };
-            var temp3 = new List<Domain.Entities.Employee>()
-            {
-                new Domain.Entities.Employee()
-                {
-                    Id = 3,
-                    CreatedBy = "Mark",
-                    CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
-                    LastModifiedBy = string.Empty,
-                    LastModifiedDate = null,
-                    Name = "Pracownik3",
-                    LastName = "NazwikoPracownik3"
-                },
-                new Domain.Entities.Employee()
-                {
-                    Id = 4,
-                    CreatedBy = "Mark4",
-                    CreatedDate = GeneratorHelper.GenerateRandomDate(new DateTime(2023, 1, 1), DateTime.Now),
-                    LastModifiedBy = string.Empty,
-                    LastModifiedDate = null,
-                    Name = "Pracownik4",
-                    LastName = "NazwikoPracownik4"
-                }
-            };
-            comapny3.Employees = temp3;
+
             list.Add(comapny3);
 
             return list;
