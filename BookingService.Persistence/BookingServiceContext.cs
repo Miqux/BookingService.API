@@ -12,6 +12,7 @@ namespace BookingService.Infrastructure.Persistence
 
         public DbSet<User> User { get; set; }
         public DbSet<Address> Address { get; set; }
+        public DbSet<Calendar> Calendar { get; set; }
         public DbSet<Company> Company { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
         public DbSet<Service> Service { get; set; }

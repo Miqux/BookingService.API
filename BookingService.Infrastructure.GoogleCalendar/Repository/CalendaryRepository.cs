@@ -5,6 +5,8 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 
+#nullable disable
+
 namespace BookingService.Infrastructure.GoogleCalendar.Repository
 {
     public class CalendaryRepository : ICalendaryRepository
