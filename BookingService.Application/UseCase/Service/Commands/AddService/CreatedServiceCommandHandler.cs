@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using BookingService.Application.Contracts.Persistance;
+using FluentValidation.Results;
 using MediatR;
 
-namespace BookingService.Application.UseCase.Service.Commands
+namespace BookingService.Application.UseCase.Service.Commands.AddService
 {
     public class CreatedServiceCommandHandler : IRequestHandler<CreatedServiceCommand, CreatedServiceCommandResponse>
     {
@@ -23,10 +24,14 @@ namespace BookingService.Application.UseCase.Service.Commands
             if (!validator.IsValid)
                 return new CreatedServiceCommandResponse(validator);
 
-            var company = companyRepository.GetByIdAsync(request.ComapnyId).Result;
+            var company = companyRepository.GetByIdAsync(request.CompanyId).Result;
 
             if (company == null)
-                return new CreatedServiceCommandResponse("Comapny doasn't exist", false);
+            {
+                ValidationResult validation = new(new List<ValidationFailure>());
+                validation.Errors.Add(new ValidationFailure("CompanyId", "Comapny doasn't exist"));
+                return new CreatedServiceCommandResponse(validation);
+            }
 
             var service = mapper.Map<Domain.Entities.Service>(request);
             service.Company = company;
