@@ -16,7 +16,7 @@ namespace BookingService.Application.UseCase.Service.Queries.GetServicesLightMod
         }
         public async Task<List<ServiceLightModel>> Handle(GetServicesLightModelQuery request, CancellationToken cancellationToken)
         {
-            var services = await serviceRepository.GetAllAsync();
+            var services = await serviceRepository.GetAllWithChildren();
             return mapper.Map<List<ServiceLightModel>>(services);
         }
     }
