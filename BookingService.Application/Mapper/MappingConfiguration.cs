@@ -7,6 +7,7 @@ using BookingService.Application.UseCase.Company.Queries.GetCompanyByUserId;
 using BookingService.Application.UseCase.Service.Commands.AddService;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
 using BookingService.Application.UseCase.Service.Queries.GetCompanyServices;
+using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using BookingService.Application.UseCase.User.Commands.CreateUser;
 using BookingService.Application.UseCase.User.Queries.GetUser;
@@ -29,6 +30,7 @@ namespace BookingService.Application.Mapper
                 .ForMember(dest => dest.ComapnyName, opt => opt.MapFrom(src => src.Company != null ? src.Company.Name : ""));
             CreateMap<CreatedServiceCommand, Service>();
             CreateMap<Service, CompanyServiceViewModel>();
+            CreateMap<Service, ServiceDetalisViewModel>().ReverseMap();
 
             CreateMap<User, RegisteryCommand>().ReverseMap();
             CreateMap<UserViewModel, User>().ReverseMap();

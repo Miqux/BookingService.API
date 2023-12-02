@@ -2,6 +2,7 @@
 using BookingService.Application.UseCase.Service.Commands.DeleteService;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
 using BookingService.Application.UseCase.Service.Queries.GetCompanyServices;
+using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +47,16 @@ namespace BookingService.API.Controllers
             var response = await mediator.Send(new GetCompanyServicesQuery() { CompanyId = id });
 
             if (response is null || response.Count == 0)
+                return NotFound();
+
+            return Ok(response);
+        }
+        [HttpGet("GetServiceDetails/{id}")]
+        public async Task<ActionResult<List<ServiceLightModel>>> GetServiceDetails(int id)
+        {
+            var response = await mediator.Send(new GetServiceDetalisQuery() { Id = id });
+
+            if (response is null)
                 return NotFound();
 
             return Ok(response);

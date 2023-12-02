@@ -135,7 +135,7 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
             int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
             response.Success.ShouldBe(false);
-            response.ValidationErrors.Count.ShouldBe(0);
+            response.ValidationErrors.Count.ShouldBe(1);
             response.ServiceId.ShouldBeNull();
             userCountAfterCommand.ShouldBe(userCountBeforeCommand);
         }

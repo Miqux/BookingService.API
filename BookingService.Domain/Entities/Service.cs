@@ -9,6 +9,6 @@ namespace BookingService.Domain.Entities
         public decimal Cost { get; set; }
         public int DurationInMinutes { get; set; }
         public ServiceType Type { get; set; }
-        public Company? Company { get; set; }
+        public Company Company { get; set; } = new();
     }
 }

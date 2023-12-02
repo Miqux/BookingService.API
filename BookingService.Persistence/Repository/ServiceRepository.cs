@@ -15,6 +15,11 @@ namespace BookingService.Infrastructure.Persistence.Repository
             return await bookingServiceContext.Service.Include(x => x.Company).ToListAsync();
         }
 
+        public async Task<Service?> GetServiceDetalis(int id)
+        {
+            return await bookingServiceContext.Service.Include(x => x.Company).ThenInclude(x => x.Address).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<List<Service>> GetServicesByCompanyId(int companyId)
         {
             return await bookingServiceContext.Service.Where(x => x.Company != null && x.Company.Id == companyId).ToListAsync();
