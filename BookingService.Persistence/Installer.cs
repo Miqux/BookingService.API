@@ -22,6 +22,7 @@ namespace BookingService.Infrastructure.Persistence
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IServiceRepository, ServiceRepository>();
+            services.AddScoped<ICalendarRepository, CalendarRepository>();
 
             return services;
         }

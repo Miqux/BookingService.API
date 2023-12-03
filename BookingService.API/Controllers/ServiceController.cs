@@ -2,6 +2,7 @@
 using BookingService.Application.UseCase.Service.Commands.DeleteService;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
 using BookingService.Application.UseCase.Service.Queries.GetCompanyServices;
+using BookingService.Application.UseCase.Service.Queries.GetPossibleServiceHours;
 using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using MediatR;
@@ -57,6 +58,16 @@ namespace BookingService.API.Controllers
             var response = await mediator.Send(new GetServiceDetalisQuery() { Id = id });
 
             if (response is null)
+                return NotFound();
+
+            return Ok(response);
+        }
+        [HttpGet("GetPossibleServiceHour/{id}/{date}")]
+        public async Task<ActionResult<List<PossibleServiceHourViewModel>>> GetPossibleServiceHour(int id, string date)
+        {
+            var response = await mediator.Send(new GetPossibleServiceHoursQuery() { ServiceId = id });
+
+            if (response is null || response.Count < 1)
                 return NotFound();
 
             return Ok(response);

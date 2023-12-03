@@ -8,7 +8,7 @@ namespace BookingService.Infrastructure.GoogleCalendar
     {
         public static IServiceCollection AddBookingServiceGoogleCalendar(this IServiceCollection services)
         {
-            services.AddScoped<ICalendaryRepository, CalendaryRepository>();
+            services.AddScoped<IGoogleCalendaryRepository, GoogleCalendaryRepository>();
 
             return services;
         }

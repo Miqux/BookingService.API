@@ -5,9 +5,9 @@ namespace BookingService.Application.UseCase.Reservation.Commands
 {
     public class CreatedReservationCommandHandler : IRequestHandler<CreatedReservationCommand, CreatedReservationCommandResponse>
     {
-        private readonly ICalendaryRepository calendaryRepository;
+        private readonly IGoogleCalendaryRepository calendaryRepository;
 
-        public CreatedReservationCommandHandler(ICalendaryRepository calendaryRepository)
+        public CreatedReservationCommandHandler(IGoogleCalendaryRepository calendaryRepository)
         {
             this.calendaryRepository = calendaryRepository;
         }

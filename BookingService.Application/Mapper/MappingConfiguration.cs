@@ -7,11 +7,13 @@ using BookingService.Application.UseCase.Company.Queries.GetCompanyByUserId;
 using BookingService.Application.UseCase.Service.Commands.AddService;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
 using BookingService.Application.UseCase.Service.Queries.GetCompanyServices;
+using BookingService.Application.UseCase.Service.Queries.GetPossibleServiceHours;
 using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using BookingService.Application.UseCase.User.Commands.CreateUser;
 using BookingService.Application.UseCase.User.Queries.GetUser;
 using BookingService.Domain.Entities;
+using BookingService.Domain.ValueObject;
 
 namespace BookingService.Application.Mapper
 {
@@ -31,6 +33,8 @@ namespace BookingService.Application.Mapper
             CreateMap<CreatedServiceCommand, Service>();
             CreateMap<Service, CompanyServiceViewModel>();
             CreateMap<Service, ServiceDetalisViewModel>().ReverseMap();
+
+            CreateMap<ServiceTime, PossibleServiceHourViewModel>();
 
             CreateMap<User, RegisteryCommand>().ReverseMap();
             CreateMap<UserViewModel, User>().ReverseMap();

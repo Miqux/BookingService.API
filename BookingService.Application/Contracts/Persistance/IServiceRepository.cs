@@ -6,6 +6,7 @@ namespace BookingService.Application.Contracts.Persistance
     {
         public Task<List<Service>> GetServicesByCompanyId(int companyId);
         public Task<List<Service>> GetAllWithChildren();
+        public Task<Service?> GetWithChildren(int id, bool withComapnyCalendar = false);
         public Task<Service?> GetServiceDetalis(int id);
     }
 }
