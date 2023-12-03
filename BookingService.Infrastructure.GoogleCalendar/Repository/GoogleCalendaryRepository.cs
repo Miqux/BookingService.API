@@ -1,6 +1,5 @@
 ﻿using BookingService.Application.Contracts.Calendary;
 using BookingService.Application.Contracts.Persistance;
-using BookingService.Application.UseCase.Reservation.Commands;
 using BookingService.Domain.ValueObject;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
@@ -54,8 +53,8 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
         {
             var service = await CreateCalendarService(calendarId);
             EventsResource.ListRequest request = service.Events.List(calendarName);
-            request.TimeMin = dateOnly.ToDateTime(new TimeOnly(00, 00, 00));
-            request.TimeMax = dateOnly.ToDateTime(new TimeOnly(23, 59, 59));
+            request.TimeMinDateTimeOffset = dateOnly.ToDateTime(new TimeOnly(00, 00, 00));
+            request.TimeMaxDateTimeOffset = dateOnly.ToDateTime(new TimeOnly(23, 59, 59));
             request.ShowDeleted = false;
             request.SingleEvents = true;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
@@ -69,10 +68,10 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
             foreach (var item in events.Items)
             {
                 // Sprawdzenie, czy to jest wydarzenie typu "wolne"
-                if (item.Transparency == "transparent" && item.Start.DateTime.HasValue && item.End.DateTime.HasValue)
+                if (item.Transparency == "transparent" && item.Start.DateTimeDateTimeOffset.HasValue && item.End.DateTimeDateTimeOffset.HasValue)
                 {
-                    TimeSpan freeSlotStart = item.Start.DateTime.Value.TimeOfDay;
-                    TimeSpan freeSlotEnd = item.End.DateTime.Value.TimeOfDay;
+                    TimeSpan freeSlotStart = item.Start.DateTimeDateTimeOffset.Value.TimeOfDay;
+                    TimeSpan freeSlotEnd = item.End.DateTimeDateTimeOffset.Value.TimeOfDay;
 
                     ServiceTime serviceTime = new ServiceTime();
                     serviceTime.StartTime = freeSlotStart;
@@ -86,8 +85,8 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
         {
             var service = await CreateCalendarService(calendarId);
             EventsResource.ListRequest request = service.Events.List(calendarName);
-            request.TimeMin = dateOnly.ToDateTime(new TimeOnly(00, 00, 00));
-            request.TimeMax = dateOnly.ToDateTime(new TimeOnly(23, 59, 59));
+            request.TimeMinDateTimeOffset = dateOnly.ToDateTime(new TimeOnly(00, 00, 00));
+            request.TimeMaxDateTimeOffset = dateOnly.ToDateTime(new TimeOnly(23, 59, 59));
             request.ShowDeleted = false;
             request.SingleEvents = true;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
@@ -100,71 +99,34 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
 
             foreach (var item in events.Items)
             {
-                // Sprawdzenie, czy to jest wydarzenie typu "wolne"
-                if (item.Transparency != "transparent" && item.Start.DateTime.HasValue && item.End.DateTime.HasValue)
+                // Sprawdzenie, czy to jest wydarzenie typu "wolne" 
+                if (item.Transparency != "transparent" && item.Start.DateTimeDateTimeOffset.HasValue && item.End.DateTimeDateTimeOffset.HasValue)
                 {
-                    TimeSpan freeSlotStart = item.Start.DateTime.Value.TimeOfDay;
-                    TimeSpan freeSlotEnd = item.End.DateTime.Value.TimeOfDay;
+                    TimeSpan freeSlotStart = item.Start.DateTimeDateTimeOffset.Value.TimeOfDay;
+                    TimeSpan freeSlotEnd = item.End.DateTimeDateTimeOffset.Value.TimeOfDay;
 
-                    ServiceTime serviceTime = new ServiceTime();
-                    serviceTime.StartTime = freeSlotStart;
-                    serviceTime.EndTime = freeSlotEnd;
+                    ServiceTime serviceTime = new ServiceTime
+                    {
+                        StartTime = freeSlotStart,
+                        EndTime = freeSlotEnd
+                    };
                     freeSlots.Add(serviceTime);
                 }
             }
             return freeSlots;
         }
-        public async Task<bool> AddReservation(CreatedReservationCommand reservation)
+        public async Task<bool> AddServiceEvent(ServiceEvent serviceEvent)
         {
-            string calendarId = @"bartlomiejmikolajczuk@gmail.com";
-            var service = await CreateCalendarService(1);
-            var calendar = service.Calendars.Get(calendarId).Execute();
-            Console.WriteLine("Calendar Name :");
-            Console.WriteLine(calendar.Summary);
-
-            Console.WriteLine("click for more .. ");
-            Console.Read();
-
-
-            // Define parameters of request.
-            EventsResource.ListRequest listRequest = service.Events.List(calendarId);
-            listRequest.TimeMin = DateTime.Now;
-            listRequest.ShowDeleted = false;
-            listRequest.SingleEvents = true;
-            listRequest.MaxResults = 10;
-            listRequest.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-
-            // List events.
-            Events events = listRequest.Execute();
-            Console.WriteLine("Upcoming events:");
-            if (events.Items != null && events.Items.Count > 0)
-            {
-                foreach (var eventItem in events.Items)
-                {
-                    string when = eventItem.Start.DateTime.ToString();
-                    if (String.IsNullOrEmpty(when))
-                    {
-                        when = eventItem.Start.Date;
-                    }
-                    Console.WriteLine("{0} ({1})", eventItem.Summary, when);
-                }
-            }
-            else
-            {
-                Console.WriteLine("No upcoming events found.");
-            }
-            Console.WriteLine("click for more .. ");
-            Console.Read();
-
+            var service = await CreateCalendarService(serviceEvent.CalendarId);
             var myevent = new Event()
             {
-                Summary = "Test",
-                Start = new EventDateTime() { DateTime = DateTime.Now },
-                End = new EventDateTime() { DateTime = DateTime.Now.AddMinutes(60) }
-
+                Summary = serviceEvent.ServiceName,
+                Description = serviceEvent.ClientName + " " + serviceEvent.ClientSurname,
+                Start = new EventDateTime() { DateTimeDateTimeOffset = serviceEvent.StartDate },
+                End = new EventDateTime() { DateTimeDateTimeOffset = serviceEvent.EndDate }
             };
 
-            var InsertRequest = service.Events.Insert(myevent, calendarId);
+            var InsertRequest = service.Events.Insert(myevent, calendarName);
 
             try
             {
@@ -174,7 +136,7 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
             {
                 try
                 {
-                    service.Events.Update(myevent, calendarId, myevent.Id).Execute();
+                    service.Events.Update(myevent, calendarName, myevent.Id).Execute();
                     Console.WriteLine("Insert/Update new Event ");
                     Console.Read();
 
@@ -183,7 +145,7 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
                 {
                     await Console.Out.WriteLineAsync(x.ToString());
                     Console.WriteLine("can't Insert/Update new Event ");
-
+                    return false;
                 }
             }
             return true;

@@ -18,6 +18,13 @@ namespace BookingService.API.Controllers
         public async Task<ActionResult<CreatedReservationCommandResponse>> Create([FromBody] CreatedReservationCommand reservation)
         {
             var response = await mediator.Send(reservation);
+
+            if (!response.Success && response.ValidationErrors.Count > 0)
+                return UnprocessableEntity(response);
+
+            if (!response.Success)
+                return BadRequest(response);
+
             return Ok(response);
         }
     }
