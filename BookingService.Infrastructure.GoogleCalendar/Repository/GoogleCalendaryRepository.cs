@@ -80,11 +80,6 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
                     freeSlots.Add(serviceTime);
                 }
             }
-            foreach (var item in freeSlots)
-            {
-                await Console.Out.WriteLineAsync("endtime " + item.EndTime.ToString());
-                await Console.Out.WriteLineAsync("startime " + item.StartTime.ToString());
-            }
             return freeSlots;
         }
         public async Task<List<ServiceTime>> GetBusyHoursByDateAndCalendarId(DateOnly dateOnly, int calendarId)
@@ -116,11 +111,6 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
                     serviceTime.EndTime = freeSlotEnd;
                     freeSlots.Add(serviceTime);
                 }
-            }
-            foreach (var item in freeSlots)
-            {
-                await Console.Out.WriteLineAsync("endtime " + item.EndTime.ToString());
-                await Console.Out.WriteLineAsync("startime " + item.StartTime.ToString());
             }
             return freeSlots;
         }

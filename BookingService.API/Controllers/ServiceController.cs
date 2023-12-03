@@ -65,7 +65,7 @@ namespace BookingService.API.Controllers
         [HttpGet("GetPossibleServiceHour/{id}/{date}")]
         public async Task<ActionResult<List<PossibleServiceHourViewModel>>> GetPossibleServiceHour(int id, string date)
         {
-            var response = await mediator.Send(new GetPossibleServiceHoursQuery() { ServiceId = id });
+            var response = await mediator.Send(new GetPossibleServiceHoursQuery() { ServiceId = id, DateOnly = DateOnly.Parse(date) });
 
             if (response is null || response.Count < 1)
                 return NotFound();
