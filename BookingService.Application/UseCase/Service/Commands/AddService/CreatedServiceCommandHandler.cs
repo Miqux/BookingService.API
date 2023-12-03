@@ -35,6 +35,7 @@ namespace BookingService.Application.UseCase.Service.Commands.AddService
 
             var service = mapper.Map<Domain.Entities.Service>(request);
             service.Company = company;
+            service.Active = true;
 
             service = await serviceRepository.AddAsync(service);
 

@@ -19,7 +19,9 @@ namespace BookingService.Application.UseCase.Service.Commands.DeleteService
             if (serviceToRemove == null)
                 return new BaseResponse("Brak usługi", false) { Status = Common.ResponseStatus.NotFound };
 
-            await serviceRepository.DeleteAsync(serviceToRemove);
+            serviceToRemove.Active = false;
+
+            await serviceRepository.UpdateAsync(serviceToRemove);
 
             return new BaseResponse("Usunięto", true);
         }

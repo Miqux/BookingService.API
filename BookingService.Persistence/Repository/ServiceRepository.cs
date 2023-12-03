@@ -12,7 +12,7 @@ namespace BookingService.Infrastructure.Persistence.Repository
 
         public async Task<List<Service>> GetAllWithChildren()
         {
-            return await bookingServiceContext.Service.Include(x => x.Company).ToListAsync();
+            return await bookingServiceContext.Service.Where(x => x.Active).Include(x => x.Company).ToListAsync();
         }
 
         public async Task<Service?> GetServiceDetalis(int id)
@@ -22,7 +22,7 @@ namespace BookingService.Infrastructure.Persistence.Repository
 
         public async Task<List<Service>> GetServicesByCompanyId(int companyId)
         {
-            return await bookingServiceContext.Service.Where(x => x.Company != null && x.Company.Id == companyId).ToListAsync();
+            return await bookingServiceContext.Service.Where(x => x.Company != null && x.Company.Id == companyId && x.Active).ToListAsync();
         }
     }
 }

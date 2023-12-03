@@ -10,5 +10,6 @@ namespace BookingService.Domain.Entities
         public int DurationInMinutes { get; set; }
         public ServiceType Type { get; set; }
         public Company Company { get; set; } = new();
+        public bool Active { get; set; }
     }
 }
