@@ -4,21 +4,19 @@ using BookingService.Domain.ValueObject;
 using FluentValidation.Results;
 using MediatR;
 
-namespace BookingService.Application.UseCase.Reservation.Commands
+namespace BookingService.Application.UseCase.Reservation.Commands.AddReservation
 {
     public class CreatedReservationCommandHandler : IRequestHandler<CreatedReservationCommand, CreatedReservationCommandResponse>
     {
         private readonly IGoogleCalendaryRepository googleCalendaryRepository;
-        private readonly ICalendarRepository calendarRepository;
         private readonly IUserRepository userRepository;
         private readonly IServiceRepository serviceRepository;
         private readonly IReservationRepository reservationRepository;
 
-        public CreatedReservationCommandHandler(IGoogleCalendaryRepository googleCalendaryRepository, ICalendarRepository calendarRepository
-            , IUserRepository userRepository, IServiceRepository serviceRepository, IReservationRepository reservationRepository)
+        public CreatedReservationCommandHandler(IGoogleCalendaryRepository googleCalendaryRepository, IUserRepository userRepository,
+            IServiceRepository serviceRepository, IReservationRepository reservationRepository)
         {
             this.googleCalendaryRepository = googleCalendaryRepository;
-            this.calendarRepository = calendarRepository;
             this.userRepository = userRepository;
             this.serviceRepository = serviceRepository;
             this.reservationRepository = reservationRepository;
@@ -64,6 +62,11 @@ namespace BookingService.Application.UseCase.Reservation.Commands
                 EndDate = request.EndDateAndTime,
                 CalendarId = service.Company.Calendar.Id
             };
+
+            var checkAvailable = await googleCalendaryRepository.CheckDateTimeIsAvailable(serviceEvent);
+
+            if (!checkAvailable)
+                return new CreatedReservationCommandResponse("Reservation date is available", false);
 
             var result = await googleCalendaryRepository.AddServiceEvent(serviceEvent);
 

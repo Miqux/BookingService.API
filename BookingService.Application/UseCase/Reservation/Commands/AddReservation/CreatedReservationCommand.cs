@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace BookingService.Application.UseCase.Reservation.Commands
+namespace BookingService.Application.UseCase.Reservation.Commands.AddReservation
 {
     public class CreatedReservationCommand : IRequest<CreatedReservationCommandResponse>
     {

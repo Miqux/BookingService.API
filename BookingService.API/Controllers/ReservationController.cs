@@ -1,4 +1,4 @@
-﻿using BookingService.Application.UseCase.Reservation.Commands;
+﻿using BookingService.Application.UseCase.Reservation.Commands.AddReservation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

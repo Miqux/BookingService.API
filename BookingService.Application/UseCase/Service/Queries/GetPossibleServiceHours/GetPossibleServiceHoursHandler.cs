@@ -35,7 +35,7 @@ namespace BookingService.Application.UseCase.Service.Queries.GetPossibleServiceH
             if (busyTime is null)
                 return new List<PossibleServiceHourViewModel>();
 
-            List<ServiceTime> serviceTimes = new List<ServiceTime>();
+            List<ServiceTime> serviceTimes = new();
 
             foreach (var item in workingTime)
             {

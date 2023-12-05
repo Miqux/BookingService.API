@@ -1,7 +1,7 @@
 ﻿using BookingService.Application.Common;
 using FluentValidation.Results;
 
-namespace BookingService.Application.UseCase.Reservation.Commands
+namespace BookingService.Application.UseCase.Reservation.Commands.AddReservation
 {
     public class CreatedReservationCommandResponse : BaseResponse
     {

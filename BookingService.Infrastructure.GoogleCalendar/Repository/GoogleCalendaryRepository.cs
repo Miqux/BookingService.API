@@ -58,21 +58,16 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
             request.ShowDeleted = false;
             request.SingleEvents = true;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-
-            // Wysyłanie zapytania i pobieranie odpowiedzi
             Events events = request.Execute();
 
-            // Przetwarzanie odpowiedzi, aby uzyskać wolne godziny
             List<ServiceTime> freeSlots = new List<ServiceTime>();
 
             foreach (var item in events.Items)
             {
-                // Sprawdzenie, czy to jest wydarzenie typu "wolne"
                 if (item.Transparency == "transparent" && item.Start.DateTimeDateTimeOffset.HasValue && item.End.DateTimeDateTimeOffset.HasValue)
                 {
                     TimeSpan freeSlotStart = item.Start.DateTimeDateTimeOffset.Value.TimeOfDay;
                     TimeSpan freeSlotEnd = item.End.DateTimeDateTimeOffset.Value.TimeOfDay;
-
                     ServiceTime serviceTime = new ServiceTime();
                     serviceTime.StartTime = freeSlotStart;
                     serviceTime.EndTime = freeSlotEnd;
@@ -91,15 +86,12 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
             request.SingleEvents = true;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
-            // Wysyłanie zapytania i pobieranie odpowiedzi
             Events events = request.Execute();
 
-            // Przetwarzanie odpowiedzi, aby uzyskać wolne godziny
             List<ServiceTime> freeSlots = new List<ServiceTime>();
 
             foreach (var item in events.Items)
             {
-                // Sprawdzenie, czy to jest wydarzenie typu "wolne" 
                 if (item.Transparency != "transparent" && item.Start.DateTimeDateTimeOffset.HasValue && item.End.DateTimeDateTimeOffset.HasValue)
                 {
                     TimeSpan freeSlotStart = item.Start.DateTimeDateTimeOffset.Value.TimeOfDay;
@@ -149,6 +141,25 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
                 }
             }
             return true;
+        }
+        public async Task<bool> CheckDateTimeIsAvailable(ServiceEvent serviceEvent)
+        {
+            bool result;
+            var service = await CreateCalendarService(serviceEvent.CalendarId);
+            EventsResource.ListRequest request = service.Events.List(calendarName);
+            request.TimeMinDateTimeOffset = serviceEvent.StartDate;
+            request.TimeMaxDateTimeOffset = serviceEvent.EndDate;
+            request.ShowDeleted = false;
+            request.SingleEvents = true;
+            request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+            Events events = request.Execute();
+
+            if (events.Items.Count > 1)
+                return false;
+
+            result = events.Items.Any(x => x.Transparency == "transparent");
+
+            return result;
         }
     }
 }
