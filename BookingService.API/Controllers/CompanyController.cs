@@ -1,4 +1,5 @@
 ﻿using BookingService.Application.UseCase.Company.Command.CreatedCompany;
+using BookingService.Application.UseCase.Company.Command.UpdatedComapnyWithAddress;
 using BookingService.Application.UseCase.Company.Queries.GetCompanyByUserId;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,15 @@ namespace BookingService.API.Controllers
         public async Task<ActionResult<CreatedCompanyCommandResponse>> Post([FromBody] CreatedCompanyCommand createdCompany)
         {
             var response = await mediator.Send(createdCompany);
+            if (!response.Success && response.ValidationErrors.Count > 0)
+                return UnprocessableEntity(response);
+
+            return Ok(response);
+        }
+        [HttpPut]
+        public async Task<ActionResult<UpdatedCompanyWithAddressCommandResponse>> Update(UpdatedCompanyWithAddressCommand company)
+        {
+            var response = await mediator.Send(company);
             if (!response.Success && response.ValidationErrors.Count > 0)
                 return UnprocessableEntity(response);
 

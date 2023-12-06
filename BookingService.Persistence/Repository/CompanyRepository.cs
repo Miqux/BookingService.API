@@ -15,8 +15,14 @@ namespace BookingService.Infrastructure.Persistence.Repository
 
         public async Task<Company?> GetByUserId(int userId)
         {
-            return await bookingServiceContext.Company.FirstOrDefaultAsync(x => x.CompanyBoss.Id == userId);
+            return await bookingServiceContext.Company.Include(x => x.Address).Include(x => x.Calendar)
+                .FirstOrDefaultAsync(x => x.CompanyBoss.Id == userId);
         }
 
+        public async Task<Company?> GetWithChildren(int id)
+        {
+            return await bookingServiceContext.Company.Include(x => x.Address).Include(x => x.Calendar)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

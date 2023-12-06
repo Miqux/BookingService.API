@@ -6,5 +6,6 @@ namespace BookingService.Application.Contracts.Persistance
     {
         Task<Company?> GetByUserId(int userId);
         Task<Company?> GetByName(string name);
+        Task<Company?> GetWithChildren(int id);
     }
 }
