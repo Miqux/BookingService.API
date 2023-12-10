@@ -65,7 +65,13 @@ namespace BookingService.API.Controllers
         [HttpGet("GetPossibleServiceHour/{id}/{date}")]
         public async Task<ActionResult<List<PossibleServiceHourViewModel>>> GetPossibleServiceHour(int id, string date)
         {
-            var response = await mediator.Send(new GetPossibleServiceHoursQuery() { ServiceId = id, DateOnly = DateOnly.Parse(date) });
+            DateOnly dateOnly = new();
+            bool dateParse = DateOnly.TryParse(date, out dateOnly);
+
+            if (!dateParse)
+                return BadRequest("Wrong dateOnly value");
+
+            var response = await mediator.Send(new GetPossibleServiceHoursQuery() { ServiceId = id, DateOnly = dateOnly });
 
             if (response is null || response.Count < 1)
                 return NotFound();

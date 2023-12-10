@@ -25,11 +25,11 @@ namespace BookingService.Infrastructure.Persistence.Repository
             return await bookingServiceContext.Service.Where(x => x.Company != null && x.Company.Id == companyId && x.Active).ToListAsync();
         }
 
-        public async Task<Service?> GetWithChildren(int id, bool withCompanyCalendar = false)
+        public async Task<Service?> GetWithChildren(int id, bool withComapnyCalendar = false)
         {
             var service = await bookingServiceContext.Service.Include(x => x.Company).FirstOrDefaultAsync(x => x.Active && x.Id == id);
 
-            if (withCompanyCalendar && service is not null && service.Company is not null)
+            if (withComapnyCalendar && service is not null && service.Company is not null)
             {
                 service.Company.Calendar = await bookingServiceContext.Calendar.FirstOrDefaultAsync(x => x.Id == service.Company.Id);
             }

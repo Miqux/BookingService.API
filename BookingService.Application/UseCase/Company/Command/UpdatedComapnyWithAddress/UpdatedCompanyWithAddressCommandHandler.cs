@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BookingService.Application.Contracts.Persistance;
+﻿using BookingService.Application.Contracts.Persistance;
 using FluentValidation.Results;
 using MediatR;
 
@@ -7,12 +6,10 @@ namespace BookingService.Application.UseCase.Company.Command.UpdatedComapnyWithA
 {
     public class UpdatedCompanyWithAddressCommandHandler : IRequestHandler<UpdatedCompanyWithAddressCommand, UpdatedCompanyWithAddressCommandResponse>
     {
-        private readonly IMapper mapper;
         private readonly ICompanyRepository companyRepository;
 
-        public UpdatedCompanyWithAddressCommandHandler(IMapper mapper, ICompanyRepository companyRepository)
+        public UpdatedCompanyWithAddressCommandHandler(ICompanyRepository companyRepository)
         {
-            this.mapper = mapper;
             this.companyRepository = companyRepository;
         }
         public async Task<UpdatedCompanyWithAddressCommandResponse> Handle(UpdatedCompanyWithAddressCommand request, CancellationToken cancellationToken)
