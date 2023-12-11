@@ -1,4 +1,5 @@
 ﻿using BookingService.Application.UseCase.Reservation.Commands.AddReservation;
+using BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations;
 using BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,9 +31,20 @@ namespace BookingService.API.Controllers
         }
 
         [HttpGet("GetIncomingReservationsByUserId/{id}")]
-        public async Task<ActionResult<List<IncomingReservationViewModel>>> GetServiceDetails(int id)
+        public async Task<ActionResult<List<IncomingReservationViewModel>>> GetIncomingReservationsByUserId(int id)
         {
             var response = await mediator.Send(new GetIncomingReservationsQuery() { UserId = id });
+
+            if (response is null)
+                return NotFound();
+
+            return Ok(response);
+        }
+
+        [HttpGet("GetCompletedReservationsByUserId/{id}")]
+        public async Task<ActionResult<List<CompletedReservationViewModel>>> GetCompletedReservationsByUserId(int id)
+        {
+            var response = await mediator.Send(new GetCompletedReservationsQuery() { UserId = id });
 
             if (response is null)
                 return NotFound();

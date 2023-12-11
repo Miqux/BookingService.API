@@ -4,6 +4,7 @@ using BookingService.Application.UseCase.Address.Queries.GetAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAllAddress;
 using BookingService.Application.UseCase.Company.Command.CreatedCompany;
 using BookingService.Application.UseCase.Company.Queries.GetCompanyByUserId;
+using BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations;
 using BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations;
 using BookingService.Application.UseCase.Service.Commands.AddService;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
@@ -44,6 +45,8 @@ namespace BookingService.Application.Mapper
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.CalendaryName));
 
             CreateMap<IncomingReservationViewModel, Reservation>().ReverseMap()
+                .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Service != null ? src.Service.Company.Name : ""));
+            CreateMap<CompletedReservationViewModel, Reservation>().ReverseMap()
                 .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Service != null ? src.Service.Company.Name : ""));
         }
     }
