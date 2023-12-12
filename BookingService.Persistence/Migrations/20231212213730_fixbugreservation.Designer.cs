@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookingService.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(BookingServiceContext))]
-    [Migration("20231209172632_ChangeNullableReservation")]
-    partial class ChangeNullableReservation
+    [Migration("20231212213730_fixbugreservation")]
+    partial class fixbugreservation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -201,13 +201,13 @@ namespace BookingService.Infrastructure.Persistence.Migrations
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ServiceId")
+                    b.Property<int?>("ServiceId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -344,15 +344,11 @@ namespace BookingService.Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("BookingService.Domain.Entities.Service", "Service")
                         .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ServiceId");
 
                     b.HasOne("BookingService.Domain.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Service");
 

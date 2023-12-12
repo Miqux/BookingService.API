@@ -4,7 +4,7 @@
 
 namespace BookingService.Infrastructure.Persistence.Migrations
 {
-    public partial class ChangeNullableReservation : Migration
+    public partial class fixbugreservation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,25 +20,13 @@ namespace BookingService.Infrastructure.Persistence.Migrations
                 name: "UserId",
                 table: "Reservation",
                 type: "int",
-                nullable: false,
-                defaultValue: 0,
+                nullable: true,
                 oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
+                oldType: "int");
 
             migrationBuilder.AlterColumn<int>(
                 name: "ServiceId",
                 table: "Reservation",
-                type: "int",
-                nullable: false,
-                defaultValue: 0,
-                oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<int>(
-                name: "ApartmentNumber",
-                table: "Address",
                 type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
@@ -49,16 +37,14 @@ namespace BookingService.Infrastructure.Persistence.Migrations
                 table: "Reservation",
                 column: "ServiceId",
                 principalTable: "Service",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Reservation_User_UserId",
                 table: "Reservation",
                 column: "UserId",
                 principalTable: "User",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -75,21 +61,15 @@ namespace BookingService.Infrastructure.Persistence.Migrations
                 name: "UserId",
                 table: "Reservation",
                 type: "int",
-                nullable: true,
+                nullable: false,
+                defaultValue: 0,
                 oldClrType: typeof(int),
-                oldType: "int");
+                oldType: "int",
+                oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "ServiceId",
                 table: "Reservation",
-                type: "int",
-                nullable: true,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "ApartmentNumber",
-                table: "Address",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
@@ -102,14 +82,16 @@ namespace BookingService.Infrastructure.Persistence.Migrations
                 table: "Reservation",
                 column: "ServiceId",
                 principalTable: "Service",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Reservation_User_UserId",
                 table: "Reservation",
                 column: "UserId",
                 principalTable: "User",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
     }
 }
