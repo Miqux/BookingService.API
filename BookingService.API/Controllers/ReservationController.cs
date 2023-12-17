@@ -16,6 +16,7 @@ namespace BookingService.API.Controllers
         {
             this.mediator = mediator;
         }
+
         [HttpPost]
         public async Task<ActionResult<CreatedReservationCommandResponse>> Create([FromBody] CreatedReservationCommand reservation)
         {

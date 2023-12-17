@@ -21,7 +21,7 @@ namespace BookingService.Infrastructure.Security
             var claims = new Claim[]
             {
                 new (JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                new (JwtRegisteredClaimNames.Actort, user.Role.ToString()),
+                new (JwtRegisteredClaimNames.Actort, user.Role.ToString())
             };
 
             var signingCredentaials = new SigningCredentials(

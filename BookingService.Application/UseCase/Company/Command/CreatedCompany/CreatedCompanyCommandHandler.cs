@@ -2,6 +2,7 @@
 using BookingService.Application.Contracts.Persistance;
 using FluentValidation.Results;
 using MediatR;
+using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.Application.UseCase.Company.Command.CreatedCompany
 {
@@ -26,7 +27,7 @@ namespace BookingService.Application.UseCase.Company.Command.CreatedCompany
 
             var user = await userRepository.GetByIdAsync(request.UserId);
 
-            if (user is null || user.Role is not Domain.Entities.Enums.UserRole.CompanyBoss)
+            if (user is null || user.Role is not UserRole.CompanyBoss)
                 return new CreatedCompanyCommandResponse(new ValidationResult(new List<ValidationFailure>
                 {
                     new ValidationFailure("UserId", "Incorrect User")

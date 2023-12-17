@@ -14,6 +14,7 @@ using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using BookingService.Application.UseCase.User.Commands.CreateUser;
 using BookingService.Application.UseCase.User.Queries.GetUser;
+using BookingService.Application.UseCase.User.Queries.GetUsersAdministration;
 using BookingService.Domain.Entities;
 using BookingService.Domain.ValueObject;
 
@@ -39,6 +40,7 @@ namespace BookingService.Application.Mapper
 
             CreateMap<User, RegisteryCommand>().ReverseMap();
             CreateMap<UserViewModel, User>().ReverseMap();
+            CreateMap<User, UserAdministrationViewModel>();
 
             CreateMap<CompanyByUserIdViewModel, Company>().ReverseMap();
             CreateMap<Calendar, CreatedCompanyCommand>().ReverseMap()

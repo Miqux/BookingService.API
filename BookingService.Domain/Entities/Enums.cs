@@ -5,7 +5,8 @@
         public enum UserRole
         {
             CompanyBoss = 1,
-            User = 2
+            User = 2,
+            Admin = 3
         }
         public enum ServiceType
         {
