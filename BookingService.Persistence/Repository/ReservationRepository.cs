@@ -10,6 +10,12 @@ namespace BookingService.Infrastructure.Persistence.Repository
         {
         }
 
+        public async Task<Reservation?> GetByIdWithChildren(int id)
+        {
+            return await bookingServiceContext.Reservation.Include(x => x.Service).Include(x => x.User)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<List<Reservation>> GetCompletedWithChildrenByUserId(int userId)
         {
             return await bookingServiceContext.Reservation.Where(x => x.EndDate < DateTime.Now && x.User != null && x.User.Id == userId)

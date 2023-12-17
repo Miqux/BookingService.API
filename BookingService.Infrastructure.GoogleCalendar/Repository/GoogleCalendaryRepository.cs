@@ -161,5 +161,25 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
 
             return result;
         }
+        public async Task<bool> DeleteEvent(DateTime startDate, DateTime endDate, int calendarId)
+        {
+            var service = await CreateCalendarService(calendarId);
+
+            EventsResource.ListRequest request = service.Events.List(calendarName);
+            request.TimeMinDateTimeOffset = startDate;
+            request.TimeMaxDateTimeOffset = endDate;
+            request.ShowDeleted = false;
+            request.SingleEvents = true;
+            request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+            Events events = request.Execute();
+
+            Event eventToDelete = events.Items.FirstOrDefault(x => x.Transparency != "transparent");
+
+            if (eventToDelete is null)
+                return false;
+
+            service.Events.Delete(calendarName, eventToDelete.Id).Execute();
+            return true;
+        }
     }
 }

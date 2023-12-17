@@ -1,4 +1,5 @@
-﻿using BookingService.Application.UseCase.Service.Commands.AddService;
+﻿using BookingService.Application.Common;
+using BookingService.Application.UseCase.Service.Commands.AddService;
 using BookingService.Application.UseCase.Service.Commands.DeleteService;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
 using BookingService.Application.UseCase.Service.Queries.GetCompanyServices;
@@ -79,7 +80,7 @@ namespace BookingService.API.Controllers
             return Ok(response);
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<ServiceInListViewModel>>> Delete(int id)
+        public async Task<ActionResult<BaseResponse>> Delete(int id)
         {
             var response = await mediator.Send(new DeleteServiceCommand() { ServiceId = id });
 

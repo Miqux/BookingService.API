@@ -8,5 +8,6 @@ namespace BookingService.Application.Contracts.Calendary
         Task<List<ServiceTime>> GetWorkingHoursByDateAndCalendarId(DateOnly dateOnly, int calendarId);
         Task<List<ServiceTime>> GetBusyHoursByDateAndCalendarId(DateOnly dateOnly, int calendarId);
         Task<bool> CheckDateTimeIsAvailable(ServiceEvent serviceEvent);
+        Task<bool> DeleteEvent(DateTime startDate, DateTime endDate, int calendarId);
     }
 }

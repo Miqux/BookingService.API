@@ -1,4 +1,6 @@
-﻿using BookingService.Application.UseCase.Reservation.Commands.AddReservation;
+﻿using BookingService.Application.Common;
+using BookingService.Application.UseCase.Reservation.Commands.AddReservation;
+using BookingService.Application.UseCase.Reservation.Commands.DeletedReservation;
 using BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations;
 using BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations;
 using MediatR;
@@ -49,6 +51,17 @@ namespace BookingService.API.Controllers
 
             if (response is null)
                 return NotFound();
+
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<BaseResponse>> Delete(int id)
+        {
+            var response = await mediator.Send(new DeletedReservationCommand() { Id = id });
+
+            if (response.Status == ResponseStatus.NotFound)
+                return NotFound(response);
 
             return Ok(response);
         }
