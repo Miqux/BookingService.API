@@ -16,6 +16,7 @@ namespace BookingService.Infrastructure.Persistence
         public DbSet<Company> Company { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
         public DbSet<Service> Service { get; set; }
+        public DbSet<Post> Post { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
