@@ -15,7 +15,7 @@ namespace BookingService.Infrastructure.Persistence.Repository
         {
             var services = await bookingServiceContext.Service.Where(x => x.Active).Include(x => x.Company).ThenInclude(x => x.Address).ToListAsync();
             services = serviceType is null ? services : services.Where(x => x.Type == serviceType).ToList();
-            services = city is null ? services : services.Where(x => x.Company.Address.City.Contains(city)).ToList();
+            services = city is null ? services : services.Where(x => x.Company.Address is null || x.Company.Address.City.Contains(city)).ToList();
             return services;
         }
 
