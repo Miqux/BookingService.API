@@ -67,8 +67,7 @@ namespace BookingService.API.Controllers
         [HttpGet("GetPossibleServiceHour/{id}/{date}")]
         public async Task<ActionResult<List<PossibleServiceHourViewModel>>> GetPossibleServiceHour(int id, string date)
         {
-            DateOnly dateOnly = new();
-            bool dateParse = DateOnly.TryParse(date, out dateOnly);
+            bool dateParse = DateOnly.TryParse(date, out DateOnly dateOnly);
 
             if (!dateParse)
                 return BadRequest("Wrong dateOnly value");
