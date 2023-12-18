@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BookingService.Application.Contracts.Persistance;
 using MediatR;
+using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.Application.UseCase.Service.Queries.GetServicesLightModel
 {
@@ -16,7 +17,9 @@ namespace BookingService.Application.UseCase.Service.Queries.GetServicesLightMod
         }
         public async Task<List<ServiceLightModel>> Handle(GetServicesLightModelQuery request, CancellationToken cancellationToken)
         {
-            var services = await serviceRepository.GetAllWithChildren();
+            ServiceType? serviceType = request.Type == 0 ? null : request.Type;
+            string? city = request.City is null || request.City.Length == 0 ? null : request.City;
+            var services = await serviceRepository.GetAllWithChildren(serviceType, city);
             return mapper.Map<List<ServiceLightModel>>(services);
         }
     }

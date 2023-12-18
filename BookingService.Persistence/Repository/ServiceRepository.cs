@@ -1,18 +1,22 @@
 ﻿using BookingService.Application.Contracts.Persistance;
 using BookingService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.Infrastructure.Persistence.Repository
 {
-    public class ServiceRepository : AsyncRepository<Domain.Entities.Service>, IServiceRepository
+    public class ServiceRepository : AsyncRepository<Service>, IServiceRepository
     {
         public ServiceRepository(BookingServiceContext bookingServiceContext) : base(bookingServiceContext)
         {
         }
 
-        public async Task<List<Service>> GetAllWithChildren()
+        public async Task<List<Service>> GetAllWithChildren(ServiceType? serviceType = null, string? city = null)
         {
-            return await bookingServiceContext.Service.Where(x => x.Active).Include(x => x.Company).ToListAsync();
+            var services = await bookingServiceContext.Service.Where(x => x.Active).Include(x => x.Company).ThenInclude(x => x.Address).ToListAsync();
+            services = serviceType is null ? services : services.Where(x => x.Type == serviceType).ToList();
+            services = city is null ? services : services.Where(x => x.Company.Address.City.Contains(city)).ToList();
+            return services;
         }
 
         public async Task<Service?> GetServiceDetalis(int id)

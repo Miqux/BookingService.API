@@ -8,6 +8,7 @@ using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.API.Controllers
 {
@@ -38,9 +39,9 @@ namespace BookingService.API.Controllers
             return Ok(response);
         }
         [HttpGet("GetLightModels")]
-        public async Task<ActionResult<List<ServiceLightModel>>> GetLight()
+        public async Task<ActionResult<List<ServiceLightModel>>> GetLight(ServiceType serviceType, string? city)
         {
-            var response = await mediator.Send(new GetServicesLightModelQuery());
+            var response = await mediator.Send(new GetServicesLightModelQuery() { Type = serviceType, City = city });
             return Ok(response);
         }
         [HttpGet("GetCompanyServices/{id}")]
