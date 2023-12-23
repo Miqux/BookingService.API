@@ -56,7 +56,7 @@ namespace BookingService.Application.UseCase.Service.Queries.GetPossibleServiceH
 
             foreach (var serviceTime in serviceTimes)
             {
-                bool isFree = !busyTime.Any(busyTime =>
+                bool isFree = !busyTime.Exists(busyTime =>
                     serviceTime.StartTime < busyTime.EndTime && serviceTime.EndTime > busyTime.StartTime);
 
                 if (isFree)
