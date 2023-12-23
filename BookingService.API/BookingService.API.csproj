@@ -25,8 +25,8 @@
   <ItemGroup>
     <ProjectReference Include="..\BookingService.Application\BookingService.Application.csproj" />
     <ProjectReference Include="..\BookingService.Infrastructure.GoogleCalendar\BookingService.Infrastructure.GoogleCalendar.csproj" />
-    <ProjectReference Include="..\BookingService.Infrastructure\BookingService.Infrastructure.Security.csproj" />
-    <ProjectReference Include="..\BookingService.Persistence\BookingService.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\BookingService.Infrastructure.Security\BookingService.Infrastructure.Security.csproj" />
+    <ProjectReference Include="..\BookingService.Infrastructure.Persistence\BookingService.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
