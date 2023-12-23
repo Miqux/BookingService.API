@@ -6,26 +6,27 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 
-#nullable disable
-
 namespace BookingService.Infrastructure.GoogleCalendar.Repository
 {
     public class GoogleCalendaryRepository : IGoogleCalendaryRepository
     {
-        private string calendarName;
+        private string calendarName = string.Empty;
         private readonly ICalendarRepository calendarRepository;
 
         public GoogleCalendaryRepository(ICalendarRepository calendarRepository)
         {
             this.calendarRepository = calendarRepository;
         }
-        private async Task<CalendarService> CreateCalendarService(int calendarId)
+        private async Task<CalendarService?> CreateCalendarService(int calendarId)
         {
             string[] Scopes = { CalendarService.Scope.Calendar };
             ServiceAccountCredential credential;
             try
             {
                 var calendar = await calendarRepository.GetByIdAsync(calendarId);
+
+                if (calendar is null) return null;
+
                 calendarName = calendar.Name;
 
                 credential = new ServiceAccountCredential(
@@ -41,17 +42,19 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
                 });
                 return service;
             }
-            catch (Exception ex)
+            catch
             {
-                var temp = ex;
+                return null;
             }
-
-            return null;
-
         }
         public async Task<List<ServiceTime>> GetWorkingHoursByDateAndCalendarId(DateOnly dateOnly, int calendarId)
         {
+            List<ServiceTime> freeSlots = new();
             var service = await CreateCalendarService(calendarId);
+
+            if (service is null)
+                return freeSlots;
+
             EventsResource.ListRequest request = service.Events.List(calendarName);
             request.TimeMinDateTimeOffset = dateOnly.ToDateTime(new TimeOnly(00, 00, 00));
             request.TimeMaxDateTimeOffset = dateOnly.ToDateTime(new TimeOnly(23, 59, 59));
@@ -59,8 +62,6 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
             request.SingleEvents = true;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
             Events events = request.Execute();
-
-            List<ServiceTime> freeSlots = new List<ServiceTime>();
 
             foreach (var item in events.Items)
             {
@@ -68,9 +69,11 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
                 {
                     TimeSpan freeSlotStart = item.Start.DateTimeDateTimeOffset.Value.TimeOfDay;
                     TimeSpan freeSlotEnd = item.End.DateTimeDateTimeOffset.Value.TimeOfDay;
-                    ServiceTime serviceTime = new ServiceTime();
-                    serviceTime.StartTime = freeSlotStart;
-                    serviceTime.EndTime = freeSlotEnd;
+                    ServiceTime serviceTime = new ServiceTime
+                    {
+                        StartTime = freeSlotStart,
+                        EndTime = freeSlotEnd
+                    };
                     freeSlots.Add(serviceTime);
                 }
             }
@@ -78,7 +81,12 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
         }
         public async Task<List<ServiceTime>> GetBusyHoursByDateAndCalendarId(DateOnly dateOnly, int calendarId)
         {
+            List<ServiceTime> freeSlots = new();
             var service = await CreateCalendarService(calendarId);
+
+            if (service is null)
+                return freeSlots;
+
             EventsResource.ListRequest request = service.Events.List(calendarName);
             request.TimeMinDateTimeOffset = dateOnly.ToDateTime(new TimeOnly(00, 00, 00));
             request.TimeMaxDateTimeOffset = dateOnly.ToDateTime(new TimeOnly(23, 59, 59));
@@ -87,8 +95,6 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
             Events events = request.Execute();
-
-            List<ServiceTime> freeSlots = new List<ServiceTime>();
 
             foreach (var item in events.Items)
             {
@@ -97,7 +103,7 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
                     TimeSpan freeSlotStart = item.Start.DateTimeDateTimeOffset.Value.TimeOfDay;
                     TimeSpan freeSlotEnd = item.End.DateTimeDateTimeOffset.Value.TimeOfDay;
 
-                    ServiceTime serviceTime = new ServiceTime
+                    ServiceTime serviceTime = new()
                     {
                         StartTime = freeSlotStart,
                         EndTime = freeSlotEnd
@@ -110,6 +116,10 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
         public async Task<bool> AddServiceEvent(ServiceEvent serviceEvent)
         {
             var service = await CreateCalendarService(serviceEvent.CalendarId);
+
+            if (service is null)
+                return false;
+
             var myevent = new Event()
             {
                 Summary = serviceEvent.ServiceName,
@@ -146,6 +156,10 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
         {
             bool result;
             var service = await CreateCalendarService(serviceEvent.CalendarId);
+
+            if (service is null)
+                return false;
+
             EventsResource.ListRequest request = service.Events.List(calendarName);
             request.TimeMinDateTimeOffset = serviceEvent.StartDate;
             request.TimeMaxDateTimeOffset = serviceEvent.EndDate;
@@ -165,6 +179,9 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
         {
             var service = await CreateCalendarService(calendarId);
 
+            if (service is null)
+                return false;
+
             EventsResource.ListRequest request = service.Events.List(calendarName);
             request.TimeMinDateTimeOffset = startDate;
             request.TimeMaxDateTimeOffset = endDate;
@@ -173,7 +190,10 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
             Events events = request.Execute();
 
-            Event eventToDelete = events.Items.FirstOrDefault(x => x.Transparency != "transparent");
+            if (events is null || events.Items is null)
+                return false;
+
+            Event? eventToDelete = events.Items.FirstOrDefault(x => x.Transparency != "transparent");
 
             if (eventToDelete is null)
                 return false;
