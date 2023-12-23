@@ -19,11 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Domain", "BookingService.Domain\BookingService.Domain.csproj", "{C59DFA79-D153-4C7B-BF17-F0D153044F45}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructure.Persistence", "BookingService.Persistence\BookingService.Infrastructure.Persistence.csproj", "{D42554F8-5DD5-406B-9E5F-8862D66CACFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructure.Persistence", "BookingService.Infrastructure.Persistence\BookingService.Infrastructure.Persistence.csproj", "{D42554F8-5DD5-406B-9E5F-8862D66CACFA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Aplication.UnitTest", "BookingService.Aplication.UnitTest\BookingService.Aplication.UnitTest.csproj", "{4F79C3CA-27BA-4894-A162-1B3FDF767451}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructure.Security", "BookingService.Infrastructure\BookingService.Infrastructure.Security.csproj", "{ED46D8B8-DABE-41A2-8983-393EE59632D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructure.Security", "BookingService.Infrastructure.Security\BookingService.Infrastructure.Security.csproj", "{ED46D8B8-DABE-41A2-8983-393EE59632D5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructure.GoogleCalendar", "BookingService.Infrastructure.GoogleCalendar\BookingService.Infrastructure.GoogleCalendar.csproj", "{C9B5855C-0AEA-4FC1-88F1-D5DAE41375AA}"
 EndProject
