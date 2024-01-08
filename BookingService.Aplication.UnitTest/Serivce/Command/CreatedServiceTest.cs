@@ -29,7 +29,7 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         {
             var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
-            int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
+            int serviceCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
             var response = await handler.Handle(new CreatedServiceCommand()
             {
@@ -40,12 +40,12 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
                 Type = Domain.Entities.Enums.ServiceType.Combo
             }, CancellationToken.None);
 
-            int userCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
+            int serviceCountAfterCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
             response.Success.ShouldBe(true);
             response.ValidationErrors.Count.ShouldBe(0);
             response.ServiceId.ShouldNotBeNull();
-            userCountAfterCommand.ShouldBe(userCountBeforeCommand + 1);
+            serviceCountAfterCommand.ShouldBe(serviceCountBeforeCommand + 1);
         }
         [Fact]
         public async Task Handle_WrongNameService_DontAddedToServiceRepo()
