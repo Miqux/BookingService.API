@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingService.Infrastructure.GoogleCalendar", "BookingService.Infrastructure.GoogleCalendar\BookingService.Infrastructure.GoogleCalendar.csproj", "{C9B5855C-0AEA-4FC1-88F1-D5DAE41375AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingService.IntegrationTest", "BookingService.IntegrationTest\BookingService.IntegrationTest.csproj", "{21F6E47C-B542-422E-8123-0170F6D4F774}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{C9B5855C-0AEA-4FC1-88F1-D5DAE41375AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9B5855C-0AEA-4FC1-88F1-D5DAE41375AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9B5855C-0AEA-4FC1-88F1-D5DAE41375AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21F6E47C-B542-422E-8123-0170F6D4F774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F6E47C-B542-422E-8123-0170F6D4F774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F6E47C-B542-422E-8123-0170F6D4F774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F6E47C-B542-422E-8123-0170F6D4F774}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{4F79C3CA-27BA-4894-A162-1B3FDF767451} = {EE0FF6CA-377F-4263-99C8-58B1245A69CF}
 		{ED46D8B8-DABE-41A2-8983-393EE59632D5} = {B583CF5E-7C32-42AF-86A3-0A9565111FB8}
 		{C9B5855C-0AEA-4FC1-88F1-D5DAE41375AA} = {B583CF5E-7C32-42AF-86A3-0A9565111FB8}
+		{21F6E47C-B542-422E-8123-0170F6D4F774} = {EE0FF6CA-377F-4263-99C8-58B1245A69CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A981B615-DD38-4C2B-B6DD-F64E3D487E84}
