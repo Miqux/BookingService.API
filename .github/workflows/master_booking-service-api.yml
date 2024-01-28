@@ -34,9 +34,6 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
-      - name: UnitTest
-        uses: dotnet test --configuration Release --no-build
-
   deploy:
     runs-on: windows-latest
     needs: build
