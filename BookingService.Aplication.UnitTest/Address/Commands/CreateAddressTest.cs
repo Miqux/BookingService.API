@@ -30,7 +30,7 @@ namespace BookingService.Aplication.UnitTest.Address.Commands
 
             var response = await handler.Handle(new CreatedAddressCommand()
             {
-                City = "Warszawa",
+                City = "",
                 Street = "Testowa",
                 Zipcode = "21-213",
                 HouseNumber = 1,
