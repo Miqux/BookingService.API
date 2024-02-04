@@ -8,6 +8,7 @@ using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.API.Controllers
@@ -68,7 +69,9 @@ namespace BookingService.API.Controllers
         [HttpGet("GetPossibleServiceHour/{id}/{date}")]
         public async Task<ActionResult<List<PossibleServiceHourViewModel>>> GetPossibleServiceHour(int id, string date)
         {
-            bool dateParse = DateOnly.TryParse(date, out DateOnly dateOnly);
+            bool dateParse = DateOnly.TryParseExact(date, "d.M.yyyy",
+                            CultureInfo.InvariantCulture,
+                            DateTimeStyles.None, out DateOnly dateOnly);
 
             if (!dateParse)
                 return BadRequest("Wrong dateOnly value");
