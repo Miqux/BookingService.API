@@ -69,7 +69,7 @@ namespace BookingService.Infrastructure.GoogleCalendar.Repository
                 {
                     TimeSpan freeSlotStart = item.Start.DateTimeDateTimeOffset.Value.TimeOfDay;
                     TimeSpan freeSlotEnd = item.End.DateTimeDateTimeOffset.Value.TimeOfDay;
-                    ServiceTime serviceTime = new ServiceTime
+                    ServiceTime serviceTime = new()
                     {
                         StartTime = freeSlotStart,
                         EndTime = freeSlotEnd
