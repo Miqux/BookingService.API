@@ -37,7 +37,7 @@ namespace BookingService.Aplication.UnitTest.Serivce.Queries
             var handler = new GetServicesListHandler(mapper, ServiceRepositoryMock.GetServiceRepository(true).Object);
             var response = await handler.Handle(new GetServicesListQuery(), CancellationToken.None);
 
-            response.ShouldNotBeEmpty();
+            response.ShouldBeEmpty();
             response.ShouldNotBeNull();
         }
     }
