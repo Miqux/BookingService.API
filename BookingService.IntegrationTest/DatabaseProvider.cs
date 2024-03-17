@@ -1,6 +1,8 @@
-﻿using BookingService.Infrastructure.Persistence;
+﻿using BookingService.Application.Contracts.Presentation;
+using BookingService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Moq;
 #nullable disable
 namespace BookingService.IntegrationTest
 {
@@ -16,7 +18,12 @@ namespace BookingService.IntegrationTest
 
             var optionsBuilder = new DbContextOptionsBuilder<BookingServiceContext>();
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("BookingServiceConnectionString"));
-            return new BookingServiceContext(optionsBuilder.Options);
+
+            var mockCurrentUserService = new Mock<ICurrentUserService>();
+            mockCurrentUserService.Setup(repo => repo.UserRole).Returns("IntegrationTest");
+            mockCurrentUserService.Setup(repo => repo.UserId).Returns(29);
+
+            return new BookingServiceContext(optionsBuilder.Options, mockCurrentUserService.Object);
         }
     }
 }

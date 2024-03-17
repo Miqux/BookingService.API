@@ -1,5 +1,8 @@
+using BookingService.API.Middleware;
+using BookingService.API.Services;
 using BookingService.API.Setup;
 using BookingService.Application;
+using BookingService.Application.Contracts.Presentation;
 using BookingService.Infrastructure.GoogleCalendar;
 using BookingService.Infrastructure.Persistence;
 using BookingService.Infrastructure.Security;
@@ -9,6 +12,7 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<ICurrentUserService, CurrentWebUserService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options =>
 {
@@ -61,7 +65,7 @@ builder.Services.AddBookingServiceApplication();
 builder.Services.AddBookingServicePersistence(builder.Configuration);
 builder.Services.AddBookingServiceSecurity();
 builder.Services.AddBookingServiceGoogleCalendar();
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
     AddJwtBearer();
 
@@ -76,6 +80,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 //}
 
+app.UseMiddleware<AccessTokenMiddleware>();
 app.UseAuthentication();
 
 app.UseAuthorization();
