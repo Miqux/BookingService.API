@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using BookingService.Application.Contracts.Persistance;
-using MediatR;
-using static BookingService.Domain.Entities.Enums;
+﻿using BookingService.Application.Contracts.Persistance;
 
 namespace BookingService.Application.UseCase.Service.Queries.GetServicesLightModel
 {
-    public class GetServicesLightModelHandler : IRequestHandler<GetServicesLightModelQuery, List<ServiceLightModel>>
+    public class GetServicesLightModelHandler : IRequestHandler<GetServicesLightModelQuery, List<ServiceLightViewModel>>
     {
         private readonly IServiceRepository serviceRepository;
         private readonly IMapper mapper;
@@ -15,12 +12,12 @@ namespace BookingService.Application.UseCase.Service.Queries.GetServicesLightMod
             this.serviceRepository = serviceRepository;
             this.mapper = mapper;
         }
-        public async Task<List<ServiceLightModel>> Handle(GetServicesLightModelQuery request, CancellationToken cancellationToken)
+        public async Task<List<ServiceLightViewModel>> Handle(GetServicesLightModelQuery request, CancellationToken cancellationToken)
         {
             ServiceType? serviceType = request.Type == 0 ? null : request.Type;
             string? city = request.City is null || request.City.Length == 0 ? null : request.City;
             var services = await serviceRepository.GetAllWithChildren(serviceType, city);
-            return mapper.Map<List<ServiceLightModel>>(services);
+            return mapper.Map<List<ServiceLightViewModel>>(services);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations
+﻿namespace BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations
 {
     public class CompletedReservationViewModel
     {

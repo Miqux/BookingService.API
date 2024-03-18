@@ -1,6 +1,5 @@
 ﻿using BookingService.Application.Contracts.Persistance;
 using BookingService.Application.Contracts.Security;
-using MediatR;
 
 namespace BookingService.Application.UseCase.User.Commands.Login
 {
@@ -21,7 +20,7 @@ namespace BookingService.Application.UseCase.User.Commands.Login
         {
             var user = await userRepository.GetUserByLoginAsync(request.Login);
 
-            if (user == null) return new LoginCommandResponse("User not found", false);
+            if (user is null) return new LoginCommandResponse("User not found", false);
 
             if (!passwordHashService.ComparePassword(request.Password, user.Password))
                 return new LoginCommandResponse("Incorrect password", false);

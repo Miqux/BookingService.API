@@ -1,9 +1,7 @@
 ﻿using BookingService.Application.UseCase.Address.Commands.CreateAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAllAddress;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {
@@ -18,7 +16,7 @@ namespace BookingService.API.Controllers
             this.mediator = mediator;
         }
         [HttpPost]
-        public async Task<ActionResult<CreatedAddressCommandResponse>> Create([FromBody] CreatedAddressCommand createdAddressCommand)
+        public async Task<ActionResult<CreatedAddressCommandResponse>> Create([FromBody] CreateAddressCommand createdAddressCommand)
         {
             var response = await mediator.Send(createdAddressCommand);
             return Ok(response);

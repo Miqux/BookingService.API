@@ -1,7 +1,5 @@
-﻿using BookingService.Application.UseCase.Post.Command.CreatedPost;
+﻿using BookingService.Application.UseCase.Post.Commands.CreatePost;
 using BookingService.Application.UseCase.Post.Queries.GetPosts;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {
@@ -16,7 +14,7 @@ namespace BookingService.API.Controllers
             this.mediator = mediator;
         }
         [HttpPost]
-        public async Task<ActionResult<CreatedPostCommandResponse>> Post([FromBody] CreatedPostCommand model)
+        public async Task<ActionResult<CreatePostCommandResponse>> Post([FromBody] CreatePostCommand model)
         {
             var response = await mediator.Send(model);
             if (!response.Success && response.ValidationErrors.Count > 0)

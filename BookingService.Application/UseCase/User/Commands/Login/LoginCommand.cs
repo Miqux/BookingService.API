@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.User.Commands.Login
+﻿namespace BookingService.Application.UseCase.User.Commands.Login
 {
     public class LoginCommand : IRequest<LoginCommandResponse>
     {

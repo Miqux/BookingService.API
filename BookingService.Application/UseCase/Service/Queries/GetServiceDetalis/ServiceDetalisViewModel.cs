@@ -1,6 +1,4 @@
-﻿using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.Service.Queries.GetServiceDetalis
+﻿namespace BookingService.Application.UseCase.Service.Queries.GetServiceDetalis
 {
     public class ServiceDetalisViewModel
     {

@@ -25,10 +25,10 @@ namespace BookingService.Aplication.UnitTest.Address.Commands
         [Fact]
         public async Task Handle_ValidAddress_AddedToAddressRepo()
         {
-            var handler = new CreatedAddressCommandHandler(addressRepository.Object, mapper);
+            var handler = new CreateAddressCommandHandler(addressRepository.Object, mapper);
             var allAddressBeforeCount = (await addressRepository.Object.GetAllAsync()).Count;
 
-            var response = await handler.Handle(new CreatedAddressCommand()
+            var response = await handler.Handle(new CreateAddressCommand()
             {
                 City = "Warszawa",
                 Street = "Testowa",
@@ -47,10 +47,10 @@ namespace BookingService.Aplication.UnitTest.Address.Commands
         [Fact]
         public async Task Handle_NotValidAddress_DontAddedToAddressRepo()
         {
-            var handler = new CreatedAddressCommandHandler(addressRepository.Object, mapper);
+            var handler = new CreateAddressCommandHandler(addressRepository.Object, mapper);
             var allAddressBeforeCount = (await addressRepository.Object.GetAllAsync()).Count;
 
-            var response = await handler.Handle(new CreatedAddressCommand()
+            var response = await handler.Handle(new CreateAddressCommand()
             {
                 City = "Wa",
                 Street = "T",
@@ -70,10 +70,10 @@ namespace BookingService.Aplication.UnitTest.Address.Commands
         [Fact]
         public async Task Handle_HouseNumberLessThanOne_DontAddedToAddressRepo()
         {
-            var handler = new CreatedAddressCommandHandler(addressRepository.Object, mapper);
+            var handler = new CreateAddressCommandHandler(addressRepository.Object, mapper);
             var allAddressBeforeCount = (await addressRepository.Object.GetAllAsync()).Count;
 
-            var response = await handler.Handle(new CreatedAddressCommand()
+            var response = await handler.Handle(new CreateAddressCommand()
             {
                 City = "Waasda",
                 Street = "Tasdasd",

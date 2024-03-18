@@ -1,15 +1,11 @@
-﻿using BookingService.Application.Common;
-using BookingService.Application.UseCase.Service.Commands.AddService;
+﻿using BookingService.Application.UseCase.Service.Commands.CreateService;
 using BookingService.Application.UseCase.Service.Commands.DeleteService;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
 using BookingService.Application.UseCase.Service.Queries.GetCompanyServices;
 using BookingService.Application.UseCase.Service.Queries.GetPossibleServiceHours;
 using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
-using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.API.Controllers
 {
@@ -25,7 +21,7 @@ namespace BookingService.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreatedServiceCommandResponse>> Create([FromBody] CreatedServiceCommand service)
+        public async Task<ActionResult<CreateServiceCommandResponse>> Create([FromBody] CreateServiceCommand service)
         {
             var response = await mediator.Send(service);
 
@@ -41,13 +37,13 @@ namespace BookingService.API.Controllers
             return Ok(response);
         }
         [HttpGet("GetLightModels")]
-        public async Task<ActionResult<List<ServiceLightModel>>> GetLight(ServiceType serviceType, string? city)
+        public async Task<ActionResult<List<ServiceLightViewModel>>> GetLight(ServiceType serviceType, string? city)
         {
             var response = await mediator.Send(new GetServicesLightModelQuery() { Type = serviceType, City = city });
             return Ok(response);
         }
         [HttpGet("GetCompanyServices/{id}")]
-        public async Task<ActionResult<List<ServiceLightModel>>> GetCompanyServices(int id)
+        public async Task<ActionResult<List<ServiceLightViewModel>>> GetCompanyServices(int id)
         {
             var response = await mediator.Send(new GetCompanyServicesQuery() { CompanyId = id });
 
@@ -57,7 +53,7 @@ namespace BookingService.API.Controllers
             return Ok(response);
         }
         [HttpGet("GetServiceDetails/{id}")]
-        public async Task<ActionResult<List<ServiceLightModel>>> GetServiceDetails(int id)
+        public async Task<ActionResult<List<ServiceLightViewModel>>> GetServiceDetails(int id)
         {
             var response = await mediator.Send(new GetServiceDetalisQuery() { Id = id });
 
@@ -88,7 +84,7 @@ namespace BookingService.API.Controllers
         {
             var response = await mediator.Send(new DeleteServiceCommand() { ServiceId = id });
 
-            if (response.Status == ResponseStatus.NotFound)
+            if (response.Status is ResponseStatus.NotFound)
                 return NotFound(response);
 
             return Ok(response);

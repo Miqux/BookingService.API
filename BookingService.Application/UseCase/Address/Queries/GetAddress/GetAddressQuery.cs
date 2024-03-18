@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Address.Queries.GetAddress
+﻿namespace BookingService.Application.UseCase.Address.Queries.GetAddress
 {
     public class GetAddressQuery : IRequest<AddressViewModel>
     {

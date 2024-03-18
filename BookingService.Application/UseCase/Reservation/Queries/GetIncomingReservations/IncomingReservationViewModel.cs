@@ -1,6 +1,4 @@
-﻿using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations
+﻿namespace BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations
 {
     public class IncomingReservationViewModel
     {

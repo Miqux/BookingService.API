@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Service.Queries.GetCompanyServices
+﻿namespace BookingService.Application.UseCase.Service.Queries.GetCompanyServices
 {
     public class GetCompanyServicesQuery : IRequest<List<CompanyServiceViewModel>>
     {

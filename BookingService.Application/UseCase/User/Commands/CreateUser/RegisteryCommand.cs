@@ -1,7 +1,4 @@
-﻿using MediatR;
-using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.User.Commands.CreateUser
+﻿namespace BookingService.Application.UseCase.User.Commands.CreateUser
 {
     public class RegisteryCommand : IRequest<RegisteryCommandResponse>
     {

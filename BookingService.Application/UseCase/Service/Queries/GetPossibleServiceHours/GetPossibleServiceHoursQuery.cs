@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Service.Queries.GetPossibleServiceHours
+﻿namespace BookingService.Application.UseCase.Service.Queries.GetPossibleServiceHours
 {
     public class GetPossibleServiceHoursQuery : IRequest<List<PossibleServiceHourViewModel>>
     {

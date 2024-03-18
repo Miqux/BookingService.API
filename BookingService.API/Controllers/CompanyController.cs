@@ -1,8 +1,6 @@
-﻿using BookingService.Application.UseCase.Company.Command.CreatedCompany;
-using BookingService.Application.UseCase.Company.Command.UpdatedComapnyWithAddress;
+﻿using BookingService.Application.UseCase.Company.Commands.CreateCompany;
+using BookingService.Application.UseCase.Company.Commands.UpdateComapnyWithAddress;
 using BookingService.Application.UseCase.Company.Queries.GetCompanyByUserId;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {
@@ -21,13 +19,13 @@ namespace BookingService.API.Controllers
         {
             var response = await mediator.Send(new GetCompanyByUserIdQuery() { UserId = id });
 
-            if (response == null)
+            if (response is null)
                 return NotFound();
 
             return Ok(response);
         }
         [HttpPost]
-        public async Task<ActionResult<CreatedCompanyCommandResponse>> Post([FromBody] CreatedCompanyCommand createdCompany)
+        public async Task<ActionResult<CreateCompanyCommandResponse>> Post([FromBody] CreateCompanyCommand createdCompany)
         {
             var response = await mediator.Send(createdCompany);
             if (!response.Success && response.ValidationErrors.Count > 0)
@@ -36,7 +34,7 @@ namespace BookingService.API.Controllers
             return Ok(response);
         }
         [HttpPut]
-        public async Task<ActionResult<UpdatedCompanyWithAddressCommandResponse>> Update(UpdatedCompanyWithAddressCommand company)
+        public async Task<ActionResult<UpdateCompanyWithAddressCommandResponse>> Update(UpdateCompanyWithAddressCommand company)
         {
             var response = await mediator.Send(company);
             if (!response.Success && response.ValidationErrors.Count > 0)

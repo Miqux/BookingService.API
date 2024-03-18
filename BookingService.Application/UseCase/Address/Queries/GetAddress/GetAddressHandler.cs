@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using BookingService.Application.Contracts.Persistance;
-using MediatR;
+﻿using BookingService.Application.Contracts.Persistance;
 
 namespace BookingService.Application.UseCase.Address.Queries.GetAddress
 {

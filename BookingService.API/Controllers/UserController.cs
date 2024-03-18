@@ -1,11 +1,8 @@
-﻿using BookingService.Application.Common;
-using BookingService.Application.UseCase.User.Commands.CreateUser;
+﻿using BookingService.Application.UseCase.User.Commands.CreateUser;
 using BookingService.Application.UseCase.User.Commands.Login;
-using BookingService.Application.UseCase.User.Commands.UpdatedUserRole;
+using BookingService.Application.UseCase.User.Commands.UpdateUserRole;
 using BookingService.Application.UseCase.User.Queries.GetUser;
 using BookingService.Application.UseCase.User.Queries.GetUsersAdministration;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {
@@ -42,7 +39,7 @@ namespace BookingService.API.Controllers
         {
             var response = await mediator.Send(new GetUserQuery() { Id = id });
 
-            if (response == null)
+            if (response is null)
                 return NotFound();
 
             return Ok(response);
@@ -53,14 +50,14 @@ namespace BookingService.API.Controllers
         {
             var response = await mediator.Send(new GetUsersAdministrationQuery());
 
-            if (response == null)
+            if (response is null)
                 return NotFound();
 
             return Ok(response);
         }
 
         [HttpPut("UpdateUserRole")]
-        public async Task<ActionResult<BaseResponse>> UpdateUserRole(UpdatedUserRoleCommand user)
+        public async Task<ActionResult<BaseResponse>> UpdateUserRole(UpdateUserRoleCommand user)
         {
             var response = await mediator.Send(user);
             if (!response.Success && response.ValidationErrors.Count > 0)

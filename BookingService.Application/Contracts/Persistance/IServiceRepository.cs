@@ -1,7 +1,4 @@
-﻿using BookingService.Domain.Entities;
-using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.Contracts.Persistance
+﻿namespace BookingService.Application.Contracts.Persistance
 {
     public interface IServiceRepository : IAsyncRepository<Service>
     {

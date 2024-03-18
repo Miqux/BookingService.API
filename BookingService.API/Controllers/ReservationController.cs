@@ -1,10 +1,7 @@
-﻿using BookingService.Application.Common;
-using BookingService.Application.UseCase.Reservation.Commands.AddReservation;
-using BookingService.Application.UseCase.Reservation.Commands.DeletedReservation;
+﻿using BookingService.Application.UseCase.Reservation.Commands.CreateReservation;
+using BookingService.Application.UseCase.Reservation.Commands.DeleteReservation;
 using BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations;
 using BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {
@@ -20,7 +17,7 @@ namespace BookingService.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreatedReservationCommandResponse>> Create([FromBody] CreatedReservationCommand reservation)
+        public async Task<ActionResult<CreateReservationCommandResponse>> Create([FromBody] CreateReservationCommand reservation)
         {
             var response = await mediator.Send(reservation);
 
@@ -58,9 +55,9 @@ namespace BookingService.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<BaseResponse>> Delete(int id)
         {
-            var response = await mediator.Send(new DeletedReservationCommand() { Id = id });
+            var response = await mediator.Send(new DeleteReservationCommand() { Id = id });
 
-            if (response.Status == ResponseStatus.NotFound)
+            if (response.Status is ResponseStatus.NotFound)
                 return NotFound(response);
 
             return Ok(response);

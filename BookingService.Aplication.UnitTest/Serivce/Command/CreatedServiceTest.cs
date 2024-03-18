@@ -2,7 +2,7 @@
 using BookingService.Aplication.UnitTest.Company;
 using BookingService.Application.Contracts.Persistance;
 using BookingService.Application.Mapper;
-using BookingService.Application.UseCase.Service.Commands.AddService;
+using BookingService.Application.UseCase.Service.Commands.CreateService;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -27,11 +27,11 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_ValidService_AddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
+            var handler = new CreateServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int serviceCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
-            var response = await handler.Handle(new CreatedServiceCommand()
+            var response = await handler.Handle(new CreateServiceCommand()
             {
                 Name = "TestowaUsługa1",
                 Cost = 86.4M,
@@ -50,11 +50,11 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_WrongNameService_DontAddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
+            var handler = new CreateServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
-            var response = await handler.Handle(new CreatedServiceCommand()
+            var response = await handler.Handle(new CreateServiceCommand()
             {
                 Name = "aa",
                 Cost = 86.4M,
@@ -73,11 +73,11 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_WrongNumberValueService_DontAddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
+            var handler = new CreateServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
-            var response = await handler.Handle(new CreatedServiceCommand()
+            var response = await handler.Handle(new CreateServiceCommand()
             {
                 Name = "aasdda",
                 Cost = -12,
@@ -96,11 +96,11 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_WrongValueService_DontAddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
+            var handler = new CreateServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
-            var response = await handler.Handle(new CreatedServiceCommand()
+            var response = await handler.Handle(new CreateServiceCommand()
             {
                 Name = "s",
                 Cost = -12,
@@ -119,11 +119,11 @@ namespace BookingService.Aplication.UnitTest.Serivce.Command
         [Fact]
         public async Task Handle_WrongCompanyId_DontAddedToServiceRepo()
         {
-            var handler = new CreatedServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
+            var handler = new CreateServiceCommandHandler(mapper, serviceRepository.Object, companyRepository.Object);
 
             int userCountBeforeCommand = serviceRepository.Object.GetAllAsync().Result.Count;
 
-            var response = await handler.Handle(new CreatedServiceCommand()
+            var response = await handler.Handle(new CreateServiceCommand()
             {
                 Name = "sasdda",
                 Cost = 12,

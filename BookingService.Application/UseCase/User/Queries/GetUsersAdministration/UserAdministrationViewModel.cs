@@ -1,6 +1,4 @@
-﻿using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.User.Queries.GetUsersAdministration
+﻿namespace BookingService.Application.UseCase.User.Queries.GetUsersAdministration
 {
     public class UserAdministrationViewModel
     {
