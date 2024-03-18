@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BookingService.Application.Mapper;
-using BookingService.Application.UseCase.Post.Command.CreatedPost;
+using BookingService.Application.UseCase.Post.Commands.CreatePost;
 using BookingService.Application.UseCase.Post.Queries.GetPosts;
 using BookingService.Infrastructure.Persistence.Repository;
 using NUnit.Framework;
@@ -34,8 +34,8 @@ namespace BookingService.IntegrationTest
             }).CreateMapper();
             var postRepository = new PostRepository(DatabaseProvider.GetApplicationContext());
 
-            var result = await new CreatedPostCommandHandler(postRepository, mapper)
-                .Handle(new CreatedPostCommand() { Content = "Testowy post", Title = "Testowa zawartość postu" }, new CancellationToken());
+            var result = await new CreatePostCommandHandler(postRepository, mapper)
+                .Handle(new CreatePostCommand() { Content = "Testowy post", Title = "Testowa zawartość postu" }, new CancellationToken());
 
             Assert.That(result.Success, Is.EqualTo(true));
             Assert.That(result.PostId, Is.GreaterThan(0));

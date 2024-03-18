@@ -18,7 +18,7 @@ namespace BookingService.API.Controllers
             this.mediator = mediator;
         }
         [HttpPost]
-        public async Task<ActionResult<CreatedAddressCommandResponse>> Create([FromBody] CreatedAddressCommand createdAddressCommand)
+        public async Task<ActionResult<CreatedAddressCommandResponse>> Create([FromBody] CreateAddressCommand createdAddressCommand)
         {
             var response = await mediator.Send(createdAddressCommand);
             return Ok(response);
