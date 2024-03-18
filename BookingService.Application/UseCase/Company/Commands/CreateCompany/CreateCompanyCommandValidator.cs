@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace BookingService.Application.UseCase.Company.Commands.CreateCompany
+﻿namespace BookingService.Application.UseCase.Company.Commands.CreateCompany
 {
     public class CreateCompanyCommandValidator : AbstractValidator<CreateCompanyCommand>
     {

@@ -1,8 +1,6 @@
 ﻿using BookingService.Application.Common;
 using BookingService.Application.Contracts.Calendary;
 using BookingService.Application.Contracts.Persistance;
-using FluentValidation.Results;
-using MediatR;
 
 namespace BookingService.Application.UseCase.Reservation.Commands.DeleteReservation
 {

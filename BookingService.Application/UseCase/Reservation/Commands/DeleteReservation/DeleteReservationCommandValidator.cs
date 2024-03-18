@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace BookingService.Application.UseCase.Reservation.Commands.DeleteReservation
+﻿namespace BookingService.Application.UseCase.Reservation.Commands.DeleteReservation
 {
     public class DeleteReservationCommandValidator : AbstractValidator<DeleteReservationCommand>
     {

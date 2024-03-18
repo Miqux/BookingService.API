@@ -1,8 +1,5 @@
-﻿using AutoMapper;
-using BookingService.Application.Contracts.Persistance;
+﻿using BookingService.Application.Contracts.Persistance;
 using BookingService.Application.Contracts.Security;
-using FluentValidation.Results;
-using MediatR;
 
 namespace BookingService.Application.UseCase.User.Commands.CreateUser
 {

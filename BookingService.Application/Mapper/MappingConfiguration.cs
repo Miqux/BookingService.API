@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BookingService.Application.UseCase.Address.Commands.CreateAddress;
+﻿using BookingService.Application.UseCase.Address.Commands.CreateAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAllAddress;
 using BookingService.Application.UseCase.Company.Commands.CreateCompany;
@@ -17,7 +16,6 @@ using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
 using BookingService.Application.UseCase.User.Commands.CreateUser;
 using BookingService.Application.UseCase.User.Queries.GetUser;
 using BookingService.Application.UseCase.User.Queries.GetUsersAdministration;
-using BookingService.Domain.Entities;
 using BookingService.Domain.ValueObject;
 
 namespace BookingService.Application.Mapper

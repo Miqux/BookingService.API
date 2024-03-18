@@ -1,10 +1,7 @@
-﻿using BookingService.Application.Common;
-using BookingService.Application.UseCase.Reservation.Commands.CreateReservation;
+﻿using BookingService.Application.UseCase.Reservation.Commands.CreateReservation;
 using BookingService.Application.UseCase.Reservation.Commands.DeleteReservation;
 using BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations;
 using BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {

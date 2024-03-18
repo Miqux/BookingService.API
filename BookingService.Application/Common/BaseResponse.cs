@@ -1,7 +1,4 @@
-﻿
-using FluentValidation.Results;
-
-namespace BookingService.Application.Common
+﻿namespace BookingService.Application.Common
 {
     public class BaseResponse
     {

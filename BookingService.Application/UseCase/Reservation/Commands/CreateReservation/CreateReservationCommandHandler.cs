@@ -1,8 +1,6 @@
 ﻿using BookingService.Application.Contracts.Calendary;
 using BookingService.Application.Contracts.Persistance;
 using BookingService.Domain.ValueObject;
-using FluentValidation.Results;
-using MediatR;
 
 namespace BookingService.Application.UseCase.Reservation.Commands.CreateReservation
 {

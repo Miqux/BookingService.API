@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace BookingService.Application.UseCase.Reservation.Commands.CreateReservation
+﻿namespace BookingService.Application.UseCase.Reservation.Commands.CreateReservation
 {
     public class CreateReservationCommandValidator : AbstractValidator<CreateReservationCommand>
     {

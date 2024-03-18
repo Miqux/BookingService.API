@@ -1,6 +1,4 @@
-﻿using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.User.Queries.GetUser
+﻿namespace BookingService.Application.UseCase.User.Queries.GetUser
 {
     public class UserViewModel
     {

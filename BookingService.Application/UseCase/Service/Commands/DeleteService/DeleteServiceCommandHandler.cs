@@ -1,6 +1,5 @@
 ﻿using BookingService.Application.Common;
 using BookingService.Application.Contracts.Persistance;
-using MediatR;
 
 namespace BookingService.Application.UseCase.Service.Commands.DeleteService
 {

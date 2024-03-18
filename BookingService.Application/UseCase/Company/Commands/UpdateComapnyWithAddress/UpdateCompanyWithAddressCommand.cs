@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Company.Commands.UpdateComapnyWithAddress
+﻿namespace BookingService.Application.UseCase.Company.Commands.UpdateComapnyWithAddress
 {
     public class UpdateCompanyWithAddressCommand : IRequest<UpdateCompanyWithAddressCommandResponse>
     {

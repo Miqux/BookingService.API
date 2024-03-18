@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Address.Commands.CreateAddress
+﻿namespace BookingService.Application.UseCase.Address.Commands.CreateAddress
 {
     public class CreateAddressCommand : IRequest<CreatedAddressCommandResponse>
     {

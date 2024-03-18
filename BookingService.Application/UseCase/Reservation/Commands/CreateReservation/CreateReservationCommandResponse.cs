@@ -1,5 +1,4 @@
 ﻿using BookingService.Application.Common;
-using FluentValidation.Results;
 
 namespace BookingService.Application.UseCase.Reservation.Commands.CreateReservation
 {

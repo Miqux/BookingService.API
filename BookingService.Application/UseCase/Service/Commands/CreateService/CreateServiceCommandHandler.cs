@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using BookingService.Application.Contracts.Persistance;
-using FluentValidation.Results;
-using MediatR;
+﻿using BookingService.Application.Contracts.Persistance;
 
 namespace BookingService.Application.UseCase.Service.Commands.CreateService
 {

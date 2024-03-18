@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using BookingService.Application.Contracts.Persistance;
-using FluentValidation.Results;
-using MediatR;
-using static BookingService.Domain.Entities.Enums;
+﻿using BookingService.Application.Contracts.Persistance;
 
 namespace BookingService.Application.UseCase.Company.Commands.CreateCompany
 {

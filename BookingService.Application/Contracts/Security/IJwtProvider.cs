@@ -1,6 +1,4 @@
-﻿using BookingService.Domain.Entities;
-
-namespace BookingService.Application.Contracts.Security
+﻿namespace BookingService.Application.Contracts.Security
 {
     public interface IJwtProvider
     {

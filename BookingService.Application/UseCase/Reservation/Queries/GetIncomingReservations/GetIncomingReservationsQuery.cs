@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations
+﻿namespace BookingService.Application.UseCase.Reservation.Queries.GetIncomingReservations
 {
     public class GetIncomingReservationsQuery : IRequest<List<IncomingReservationViewModel>>
     {

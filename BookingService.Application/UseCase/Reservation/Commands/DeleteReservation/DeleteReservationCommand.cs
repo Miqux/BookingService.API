@@ -1,5 +1,4 @@
 ﻿using BookingService.Application.Common;
-using MediatR;
 
 namespace BookingService.Application.UseCase.Reservation.Commands.DeleteReservation
 {

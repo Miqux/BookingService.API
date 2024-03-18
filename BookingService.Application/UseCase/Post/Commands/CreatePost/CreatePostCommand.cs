@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Post.Commands.CreatePost
+﻿namespace BookingService.Application.UseCase.Post.Commands.CreatePost
 {
     public class CreatePostCommand : IRequest<CreatePostCommandResponse>
     {

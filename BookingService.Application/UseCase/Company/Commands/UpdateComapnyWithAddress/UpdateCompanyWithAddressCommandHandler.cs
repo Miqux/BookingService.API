@@ -1,6 +1,4 @@
 ﻿using BookingService.Application.Contracts.Persistance;
-using FluentValidation.Results;
-using MediatR;
 
 namespace BookingService.Application.UseCase.Company.Commands.UpdateComapnyWithAddress
 {

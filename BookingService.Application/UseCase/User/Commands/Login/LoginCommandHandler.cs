@@ -1,6 +1,5 @@
 ﻿using BookingService.Application.Contracts.Persistance;
 using BookingService.Application.Contracts.Security;
-using MediatR;
 
 namespace BookingService.Application.UseCase.User.Commands.Login
 {

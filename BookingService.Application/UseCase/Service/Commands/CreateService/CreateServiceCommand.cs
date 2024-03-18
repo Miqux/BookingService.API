@@ -1,7 +1,4 @@
-﻿using MediatR;
-using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.Service.Commands.CreateService
+﻿namespace BookingService.Application.UseCase.Service.Commands.CreateService
 {
     public class CreateServiceCommand : IRequest<CreateServiceCommandResponse>
     {

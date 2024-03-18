@@ -1,15 +1,11 @@
-﻿using BookingService.Application.Common;
-using BookingService.Application.UseCase.Service.Commands.CreateService;
+﻿using BookingService.Application.UseCase.Service.Commands.CreateService;
 using BookingService.Application.UseCase.Service.Commands.DeleteService;
 using BookingService.Application.UseCase.Service.Queries.GetAllServices;
 using BookingService.Application.UseCase.Service.Queries.GetCompanyServices;
 using BookingService.Application.UseCase.Service.Queries.GetPossibleServiceHours;
 using BookingService.Application.UseCase.Service.Queries.GetServiceDetalis;
 using BookingService.Application.UseCase.Service.Queries.GetServicesLightModel;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
-using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.API.Controllers
 {

@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace BookingService.Application.UseCase.User.Commands.UpdateUserRole
+﻿namespace BookingService.Application.UseCase.User.Commands.UpdateUserRole
 {
     public class UpdateUserRoleCommandValidator : AbstractValidator<UpdateUserRoleCommand>
     {

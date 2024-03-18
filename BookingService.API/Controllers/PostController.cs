@@ -1,7 +1,5 @@
 ﻿using BookingService.Application.UseCase.Post.Commands.CreatePost;
 using BookingService.Application.UseCase.Post.Queries.GetPosts;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {

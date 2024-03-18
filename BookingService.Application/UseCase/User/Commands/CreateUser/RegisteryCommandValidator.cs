@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace BookingService.Application.UseCase.User.Commands.CreateUser
+﻿namespace BookingService.Application.UseCase.User.Commands.CreateUser
 {
     public class RegisteryCommandValidator : AbstractValidator<RegisteryCommand>
     {

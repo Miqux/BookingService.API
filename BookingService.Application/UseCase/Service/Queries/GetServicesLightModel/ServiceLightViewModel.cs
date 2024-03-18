@@ -1,6 +1,4 @@
-﻿using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.Service.Queries.GetServicesLightModel
+﻿namespace BookingService.Application.UseCase.Service.Queries.GetServicesLightModel
 {
     public class ServiceLightViewModel
     {

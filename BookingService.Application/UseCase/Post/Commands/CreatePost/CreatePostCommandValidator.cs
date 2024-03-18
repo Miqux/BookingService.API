@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace BookingService.Application.UseCase.Post.Commands.CreatePost
+﻿namespace BookingService.Application.UseCase.Post.Commands.CreatePost
 {
     public class CreatePostCommandValidator : AbstractValidator<CreatePostCommand>
     {

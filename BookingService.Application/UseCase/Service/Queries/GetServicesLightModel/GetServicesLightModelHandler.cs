@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using BookingService.Application.Contracts.Persistance;
-using MediatR;
-using static BookingService.Domain.Entities.Enums;
+﻿using BookingService.Application.Contracts.Persistance;
 
 namespace BookingService.Application.UseCase.Service.Queries.GetServicesLightModel
 {

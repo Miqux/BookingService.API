@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Company.Queries.GetCompanyByUserId
+﻿namespace BookingService.Application.UseCase.Company.Queries.GetCompanyByUserId
 {
     public class GetCompanyByUserIdQuery : IRequest<CompanyByUserIdViewModel>
     {

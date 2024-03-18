@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Company.Commands.CreateCompany
+﻿namespace BookingService.Application.UseCase.Company.Commands.CreateCompany
 {
     public class CreateCompanyCommand : IRequest<CreateCompanyCommandResponse>
     {

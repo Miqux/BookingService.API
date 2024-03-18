@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace BookingService.Application.UseCase.Company.Commands.UpdateComapnyWithAddress
+﻿namespace BookingService.Application.UseCase.Company.Commands.UpdateComapnyWithAddress
 {
     public class UpdateCompanyWithAddressCommandValidator : AbstractValidator<UpdateCompanyWithAddressCommand>
     {

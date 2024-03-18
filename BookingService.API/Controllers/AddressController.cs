@@ -1,9 +1,7 @@
 ﻿using BookingService.Application.UseCase.Address.Commands.CreateAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAddress;
 using BookingService.Application.UseCase.Address.Queries.GetAllAddress;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {

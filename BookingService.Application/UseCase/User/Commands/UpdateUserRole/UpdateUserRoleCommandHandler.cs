@@ -1,7 +1,5 @@
 ﻿using BookingService.Application.Common;
 using BookingService.Application.Contracts.Persistance;
-using FluentValidation.Results;
-using MediatR;
 
 namespace BookingService.Application.UseCase.User.Commands.UpdateUserRole
 {

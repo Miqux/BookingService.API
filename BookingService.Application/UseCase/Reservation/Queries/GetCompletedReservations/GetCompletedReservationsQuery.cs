@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations
+﻿namespace BookingService.Application.UseCase.Reservation.Queries.GetCompletedReservations
 {
     public class GetCompletedReservationsQuery : IRequest<List<CompletedReservationViewModel>>
     {

@@ -1,6 +1,4 @@
 ﻿using BookingService.Application.Common;
-using MediatR;
-using static BookingService.Domain.Entities.Enums;
 
 namespace BookingService.Application.UseCase.User.Commands.UpdateUserRole
 {

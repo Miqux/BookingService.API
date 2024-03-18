@@ -1,6 +1,4 @@
-﻿using static BookingService.Domain.Entities.Enums;
-
-namespace BookingService.Application.UseCase.Service.Queries.GetCompanyServices
+﻿namespace BookingService.Application.UseCase.Service.Queries.GetCompanyServices
 {
     public class CompanyServiceViewModel
     {

@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace BookingService.Application.UseCase.Address.Commands.CreateAddress
+﻿namespace BookingService.Application.UseCase.Address.Commands.CreateAddress
 {
     public class CreateAddressCommandValidator : AbstractValidator<CreateAddressCommand>
     {

@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using BookingService.Application.Contracts.Calendary;
+﻿using BookingService.Application.Contracts.Calendary;
 using BookingService.Application.Contracts.Persistance;
 using BookingService.Domain.ValueObject;
-using MediatR;
 
 namespace BookingService.Application.UseCase.Service.Queries.GetPossibleServiceHours
 {

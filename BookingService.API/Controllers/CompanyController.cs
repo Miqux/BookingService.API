@@ -1,8 +1,6 @@
 ﻿using BookingService.Application.UseCase.Company.Commands.CreateCompany;
 using BookingService.Application.UseCase.Company.Commands.UpdateComapnyWithAddress;
 using BookingService.Application.UseCase.Company.Queries.GetCompanyByUserId;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.API.Controllers
 {
