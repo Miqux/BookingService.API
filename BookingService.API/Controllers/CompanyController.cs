@@ -21,7 +21,7 @@ namespace BookingService.API.Controllers
         {
             var response = await mediator.Send(new GetCompanyByUserIdQuery() { UserId = id });
 
-            if (response == null)
+            if (response is null)
                 return NotFound();
 
             return Ok(response);

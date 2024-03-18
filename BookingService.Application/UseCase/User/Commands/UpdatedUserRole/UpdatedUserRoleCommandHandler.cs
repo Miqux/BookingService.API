@@ -22,7 +22,7 @@ namespace BookingService.Application.UseCase.User.Commands.UpdatedUserRole
 
             var user = await userRepository.GetByIdAsync(request.Id);
 
-            if (user == null)
+            if (user is null)
             {
                 ValidationResult validation = new(new List<ValidationFailure>());
                 validation.Errors.Add(new ValidationFailure("Id", "User doeasn't exist"));

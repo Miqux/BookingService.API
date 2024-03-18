@@ -26,7 +26,7 @@ namespace BookingService.Application.UseCase.Service.Commands.AddService
 
             var company = companyRepository.GetByIdAsync(request.CompanyId).Result;
 
-            if (company == null)
+            if (company is null)
             {
                 ValidationResult validation = new(new List<ValidationFailure>());
                 validation.Errors.Add(new ValidationFailure("CompanyId", "Comapny doasn't exist"));

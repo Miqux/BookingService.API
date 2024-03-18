@@ -60,7 +60,7 @@ namespace BookingService.API.Controllers
         {
             var response = await mediator.Send(new DeletedReservationCommand() { Id = id });
 
-            if (response.Status == ResponseStatus.NotFound)
+            if (response.Status is ResponseStatus.NotFound)
                 return NotFound(response);
 
             return Ok(response);

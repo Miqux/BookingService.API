@@ -88,7 +88,7 @@ namespace BookingService.API.Controllers
         {
             var response = await mediator.Send(new DeleteServiceCommand() { ServiceId = id });
 
-            if (response.Status == ResponseStatus.NotFound)
+            if (response.Status is ResponseStatus.NotFound)
                 return NotFound(response);
 
             return Ok(response);
